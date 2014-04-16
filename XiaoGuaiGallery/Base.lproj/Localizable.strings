@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  XiaoGuaiGallery
+
+  Created by 葛羽航 on 14-4-11.
+  Copyright (c) 2014年 nju. All rights reserved.
+*/
+"DEFAULT_NAME" = "World";
+"HELLO_MESSAGE" = "Hello, %@!";
