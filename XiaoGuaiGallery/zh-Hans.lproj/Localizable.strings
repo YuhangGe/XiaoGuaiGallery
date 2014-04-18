@@ -1,9 +1,42 @@
-/* 
-  Localizable.strings
-  XiaoGuaiGallery
+/* Navigation bar buttons */
+"Cancel" = "取消";
+"Done" = "完成";
 
-  Created by 葛羽航 on 14-4-11.
-  Copyright (c) 2014年 nju. All rights reserved.
-*/
-"DEFAULT_NAME" = "世界";
-"HELLO_MESSAGE" = "您好，%@！";
+/* Title */
+"Photos" = "导入乐谱";
+
+/* No. of selected */
+"%ld Photo Selected" = "已选择 %ld 张图片";
+"%ld Photos Selected" = "已选择 %ld 张图片";
+"%ld Video Selected" = "已选择 %ld 个视频";
+"%ld Videos Selected" = "已选择 %ld 个视频";
+"%ld Items Selected" = "已选择 %ld 个元素";
+
+/* Library Footer */
+"%ld Photos" = "共 %ld 张图片";
+"%ld Videos" = "共 %ld 个视频";
+"%ld Photos, %ld Videos" = "共 %1$ld 张图片, %2$ld 个视频";
+
+/* Message if privacy is not granted */
+"This app does not have access to your photos or videos." = "当前应用没有权限访问您的照片库，可能是您之前拒绝了访问请求。";
+"You can enable access in Privacy Settings." = "请转到【设置】->【隐私】->【照片】为应用添加权限。";
+
+/* Message if no assets */
+"No Photos or Videos" = "没有图片或视频";
+
+/* The parameter will be replaced by the device model name */
+"You can take photos and videos using the camera, or sync photos and videos onto your %@\nusing iTunes." = "请使用相机拍摄照片，或者通过 iTundes 将照片或视频同步到您的 %@。";
+"You can sync photos and videos onto your %@ using iTunes." = "您可以使用 iTunes 将照片或视频同步到 %@。";
+
+/* Accessibility labels */
+"Photo" = "照片";
+"Video" = "视频";
+"Portrait" = "直向";
+"Landscape" = "横向";
+
+"Select" = "选择";
+"Rename" = "重命名";
+
+"App_Name" = "小乖看谱";
+"Search" = "搜索";
+"Back" = "返回";

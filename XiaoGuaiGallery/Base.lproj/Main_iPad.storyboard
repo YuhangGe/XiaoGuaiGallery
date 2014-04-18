@@ -7,10 +7,15 @@
         <!--Navigation Controller-->
         <scene sceneID="UDo-NU-zH5">
             <objects>
-                <navigationController definesPresentationContext="YES" id="1MG-mO-3Jh" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="1MG-mO-3Jh" sceneMemberID="viewController">
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNp-vS-Jbp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Z8L-JQ-SQA">
+                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="ujC-n1-8pg" kind="relationship" relationship="rootViewController" id="Bap-qa-4P4"/>
                     </connections>
@@ -79,13 +84,14 @@
                             <outlet property="delegate" destination="ujC-n1-8pg" id="s57-As-GYB"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Gallery" id="v99-ql-OxB"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgO-2Z-lSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215" y="-272"/>
         </scene>
-        <!--Gallery Detail Controller-->
+        <!--Gallery Detail Controller - Title-->
         <scene sceneID="KEg-Eo-Lgl">
             <objects>
                 <viewController id="zRw-R3-7vT" customClass="GalleryDetailController" sceneMemberID="viewController">
@@ -104,7 +110,7 @@
                             <outletCollection property="gestureRecognizers" destination="boo-1t-2C4" appends="YES" id="0kH-EB-IFn"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="a9w-q1-gzG"/>
+                    <navigationItem key="navigationItem" title="Title" id="a9w-q1-gzG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgT-WV-Sau" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="jTG-bH-qLt">
@@ -117,7 +123,7 @@
                         <outlet property="delegate" destination="zRw-R3-7vT" id="qKC-zo-jye"/>
                     </connections>
                 </pinchGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="boo-1t-2C4">
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="boo-1t-2C4">
                     <connections>
                         <outlet property="delegate" destination="zRw-R3-7vT" id="bGD-3A-hPB"/>
                     </connections>

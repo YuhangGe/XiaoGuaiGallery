@@ -23,6 +23,8 @@
 		17A0211118FCDA5E00FA5013 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A0210518FCDA5D00FA5013 /* Images.xcassets */; };
 		17A0211218FCDA5E00FA5013 /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0210718FCDA5D00FA5013 /* NSDate+timeDescription.m */; };
 		17A0211918FD0E7600FA5013 /* GalleryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0211818FD0E7600FA5013 /* GalleryDetailController.m */; };
+		17A021311900E63D00FA5013 /* SearchDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0212F1900E63D00FA5013 /* SearchDialogViewController.m */; };
+		17A021331900EBD100FA5013 /* SearchDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A021351900EBD100FA5013 /* SearchDialogViewController.xib */; };
 		17D2035018F7DA1E004A0D5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2034F18F7DA1E004A0D5E /* Foundation.framework */; };
 		17D2035218F7DA1E004A0D5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */; };
 		17D2035418F7DA1E004A0D5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2035318F7DA1E004A0D5E /* UIKit.framework */; };
@@ -80,9 +82,14 @@
 		17A0210518FCDA5D00FA5013 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		17A0210618FCDA5D00FA5013 /* NSDate+timeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timeDescription.h"; sourceTree = "<group>"; };
 		17A0210718FCDA5D00FA5013 /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
-		17A0211418FCDF1300FA5013 /* XiaoGuaiGallery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = XiaoGuaiGallery.entitlements; sourceTree = "<group>"; };
 		17A0211718FD0E7600FA5013 /* GalleryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryDetailController.h; sourceTree = "<group>"; };
 		17A0211818FD0E7600FA5013 /* GalleryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryDetailController.m; sourceTree = "<group>"; };
+		17A0212E1900E63D00FA5013 /* SearchDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDialogViewController.h; sourceTree = "<group>"; };
+		17A0212F1900E63D00FA5013 /* SearchDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDialogViewController.m; sourceTree = "<group>"; };
+		17A021361900EBEB00FA5013 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchDialogViewController.xib; sourceTree = "<group>"; };
+		17A0213B1900ECEE00FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		17A0213D1900ED3000FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
+		17A0213F1900EE5C00FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchDialogViewController.strings"; sourceTree = "<group>"; };
 		17D2034C18F7DA1E004A0D5E /* XiaoGuaiGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoGuaiGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D2034F18F7DA1E004A0D5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,11 +109,9 @@
 		17D2037B18F7DA1E004A0D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		17D2037D18F7DA1E004A0D5E /* XiaoGuaiGalleryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiaoGuaiGalleryTests.m; sourceTree = "<group>"; };
 		17D2038918F7DB67004A0D5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
-		17D2038A18F7DB67004A0D5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
 		17D2038B18F7DB67004A0D5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		17D2038C18F7DB67004A0D5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		17D2038E18F7DBA8004A0D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		17D2039018F7DBAF004A0D5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,11 +208,13 @@
 		17D2035518F7DA1E004A0D5E /* XiaoGuaiGallery */ = {
 			isa = PBXGroup;
 			children = (
-				17A0211418FCDF1300FA5013 /* XiaoGuaiGallery.entitlements */,
 				1792633C18FA5BCE0000F9C7 /* GalleryPhoto.h */,
 				1792633D18FA5BCE0000F9C7 /* GalleryPhoto.m */,
 				17D2035E18F7DA1E004A0D5E /* AppDelegate.h */,
 				17D2035F18F7DA1E004A0D5E /* AppDelegate.m */,
+				17A0212E1900E63D00FA5013 /* SearchDialogViewController.h */,
+				17A0212F1900E63D00FA5013 /* SearchDialogViewController.m */,
+				17A021351900EBD100FA5013 /* SearchDialogViewController.xib */,
 				17D2036118F7DA1E004A0D5E /* Main_iPhone.storyboard */,
 				17D2036418F7DA1E004A0D5E /* Main_iPad.storyboard */,
 				1792633B18FA57630000F9C7 /* Layout.h */,
@@ -342,6 +349,7 @@
 				17D2038D18F7DBA8004A0D5E /* Localizable.strings in Resources */,
 				17D2036618F7DA1E004A0D5E /* Main_iPad.storyboard in Resources */,
 				17D2036B18F7DA1E004A0D5E /* Images.xcassets in Resources */,
+				17A021331900EBD100FA5013 /* SearchDialogViewController.xib in Resources */,
 				17D2036318F7DA1E004A0D5E /* Main_iPhone.storyboard in Resources */,
 				17A0211118FCDA5E00FA5013 /* Images.xcassets in Resources */,
 				17D2035A18F7DA1E004A0D5E /* InfoPlist.strings in Resources */,
@@ -371,6 +379,7 @@
 				1792631618F910F10000F9C7 /* GalleryViewController.m in Sources */,
 				17A0210818FCDA5D00FA5013 /* ALAsset+isEqual.m in Sources */,
 				17D2036018F7DA1E004A0D5E /* AppDelegate.m in Sources */,
+				17A021311900E63D00FA5013 /* SearchDialogViewController.m in Sources */,
 				1792633E18FA5BCE0000F9C7 /* GalleryPhoto.m in Sources */,
 				17A0211918FD0E7600FA5013 /* GalleryDetailController.m in Sources */,
 				17A020EB18FA7E8700FA5013 /* Layout.m in Sources */,
@@ -402,6 +411,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		17A021351900EBD100FA5013 /* SearchDialogViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17A021361900EBEB00FA5013 /* Base */,
+				17A0213F1900EE5C00FA5013 /* zh-Hans */,
+			);
+			name = SearchDialogViewController.xib;
+			sourceTree = "<group>";
+		};
 		17D2035818F7DA1E004A0D5E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -424,7 +442,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				17D2036518F7DA1E004A0D5E /* Base */,
-				17D2038A18F7DB67004A0D5E /* zh-Hans */,
+				17A0213D1900ED3000FA5013 /* zh-Hans */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -442,7 +460,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				17D2038E18F7DBA8004A0D5E /* Base */,
-				17D2039018F7DBAF004A0D5E /* zh-Hans */,
+				17A0213B1900ECEE00FA5013 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

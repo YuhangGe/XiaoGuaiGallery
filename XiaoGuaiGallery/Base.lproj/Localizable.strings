@@ -1,9 +1,42 @@
-/* 
-  Localizable.strings
-  XiaoGuaiGallery
+/* Navigation bar buttons */
+"Cancel" = "Cancel";
+"Done" = "Done";
 
-  Created by 葛羽航 on 14-4-11.
-  Copyright (c) 2014年 nju. All rights reserved.
-*/
-"DEFAULT_NAME" = "World";
-"HELLO_MESSAGE" = "Hello, %@!";
+/* Title */
+"Photos" = "Photos";
+
+/* No. of selected */
+"%ld Photo Selected" = "%ld Photo Selected";
+"%ld Photos Selected" = "%ld Photos Selected";
+"%ld Video Selected" = "%ld Video Selected";
+"%ld Videos Selected" = "%ld Videos Selected";
+"%ld Items Selected" = "%ld Items Selected";
+
+/* Library Footer */
+"%ld Photos" = "%ld Photos";
+"%ld Videos" = "%ld Videos";
+"%ld Photos, %ld Videos" = "%1$ld Photos, %2$ld Videos";
+
+/* Message if privacy is not granted */
+"This app does not have access to your photos or videos." = "This app does not have access to your photos or videos.";
+"You can enable access in Privacy Settings." = "You can enable access in Privacy Settings.";
+
+/* Message if no assets */
+"No Photos or Videos" = "No Photos or Videos";
+
+/* The parameter will be replaced by the device model name */
+"You can take photos and videos using the camera, or sync photos and videos onto your %@\nusing iTunes." = "You can take photos and videos using the camera, or sync photos and videos onto your %@\nusing iTunes.";
+"You can sync photos and videos onto your %@ using iTunes." = "You can sync photos and videos onto your iPhone using iTunes.";
+
+/* Accessibility labels */
+"Photo" = "Photo";
+"Video" = "Video";
+"Portrait" = "Portrait";
+"Landscape" = "Landscape";
+
+"Select" = "Select";
+"Rename" = "Rename";
+
+"App_Name" = "Photo Gallery";
+"Search" = "Search";
+"Back" = "Back";

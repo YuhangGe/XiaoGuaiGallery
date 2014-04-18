@@ -21,3 +21,5 @@ extern int const LAYOUT_TITLE_FONTSIZE[];
 extern int const LAYOUT_TITLE_HEIGHT[];
 extern int const LAYOUT_MIN_LINE_SPACE[];
 extern int const LAYOUT_MIN_CELL_SPACE[];
+
+extern CGSize const SEARCH_DIALOG_SIZE;

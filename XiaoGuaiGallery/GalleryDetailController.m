@@ -61,6 +61,8 @@ const float IMAGE_SPACE = 20.0;
     [self.view addSubview:imageLeftView];
     [self.view addSubview:imageRightView];
     
+//    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
+    
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -385,13 +387,14 @@ const float IMAGE_SPACE = 20.0;
     return YES;
 }
 
+// 这个函数如果返回YES，则允许两个手势同时发生。
 // called when the recognition of one of gestureRecognizer or otherGestureRecognizer would be blocked by the other
 // return YES to allow both to recognize simultaneously. the default implementation returns NO (by default no two gestures can be recognized simultaneously)
 //
 // note: returning YES is guaranteed to allow simultaneous recognition. returning NO is not guaranteed to prevent simultaneous recognition, as the other gesture's delegate may return YES
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-    return YES;
-}
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+//    return YES;
+//}
 
 //- (void)rotateGestureAction:(UIRotationGestureRecognizer *)rotate {
 //    if (rotate.state == UIGestureRecognizerStateBegan) {
@@ -409,22 +412,23 @@ const float IMAGE_SPACE = 20.0;
 	if (pinch.state == UIGestureRecognizerStateBegan) {
         prevScale = curScale;
         pinchCenter = [pinch locationInView:self.view.superview];
-        NSLog(@"%@", NSStringFromCGPoint(pinchCenter));
+        [self savePosArray];
     }
 
-    NSLog(@"scale");
+//    NSLog(@"scale");
     float scale = pinch.scale * prevScale;
-    if (scale>0.2 && scale<= 5.0) {
+    if (scale>0.3 && scale<= 5.0) {
         curScale = scale;
         [self scaleImage:pinchCenter prevScale:prevScale];
     }
     
     if(pinch.state == UIGestureRecognizerStateEnded) {
+//        NSLog(@"send");
         if(curSizeArray[1].width * curScale<350 && curSizeArray[1].height*curScale<350) {
             //如果图片被缩小到一定程度（宽高都小于350），那么认为用户想要退回到主页面
             
         } else {
-            [self adjustPosition:0.4];
+            [self adjustPosition:0.35];
         }
     }
     
@@ -436,9 +440,9 @@ const float IMAGE_SPACE = 20.0;
         prevPanPoint = [pan locationInView:self.view.superview];
         [self savePosArray];
     }
-//
+    
+//    NSLog(@"pan");
     CGPoint curr = [pan locationInView:self.view.superview];
-//    
 	float diffx = curr.x - prevPanPoint.x;
     float diffy = curr.y - prevPanPoint.y;
     
@@ -454,16 +458,11 @@ const float IMAGE_SPACE = 20.0;
     [self setImagePosition:self.imageLeftView left:curPosArray[0].x top:curPosArray[0].y];
     [self setImagePosition:self.imageRightView left:curPosArray[2].x top:curPosArray[2].y];
 
-//    NSLog(@"pan: %f, %f", diffx, diffy);
-
     if(pan.state == UIGestureRecognizerStateEnded) {
-//        NSLog(@"pan: %f, %f", diffx, [pan velocityInView:self.view.superview].x);
         if(fabs(diffx)<20) {
             //认为是tag，不响应. 恢复到初始位置。
             [self animateLayoutImages:0.2];
-            return;
-        }
-        if(fabs([pan velocityInView:self.view.superview].x) > 300) {
+        } else if(fabs([pan velocityInView:self.view.superview].x) > 300) {
             //认为是swipe.
             if(diffx>0 && self.curImageIndex>0) {
                 [self switchLeftImage: 0.3];
@@ -472,19 +471,18 @@ const float IMAGE_SPACE = 20.0;
             } else {
                 [self animateLayoutImages:0.2];
             }
-            return;
+        } else {
+            NSTimeInterval duration = diffx / 800;
+            
+            [self adjustPosition:duration];
         }
         
-        NSTimeInterval duration = diffx / 800;
-        
-        [self adjustPosition:duration];
     }
     
 
 }
 
 -(void)tappedGestureAction:(UITapGestureRecognizer *)tap{
-    NSLog(@"tap");
     /*
      * 想要把status bar和navigation bar同步淡入淡出，似乎没有靠谱的方法。网上能找到的各种方法，
      * 经过试验，如下的代码是表现最接近预期的。
@@ -492,12 +490,14 @@ const float IMAGE_SPACE = 20.0;
      */
     if(self.navigationController.isNavigationBarHidden) {
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-
         [UIView animateWithDuration:0.5 animations:^ {
             self.navigationController.navigationBar.alpha = 1.0;
         } completion:^(BOOL finished){
             [self.navigationController setNavigationBarHidden:NO animated:NO];
         }];
+        
+        [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+        
     } else {
         [UIView transitionWithView: self.navigationController.view
                           duration: 0.3
@@ -507,6 +507,9 @@ const float IMAGE_SPACE = 20.0;
                             [self.navigationController setNavigationBarHidden: YES animated: NO];
                         }
                         completion: nil ];
+        
+        //进入全屏查看状态后，保持屏幕常亮。
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     }
     
 }
