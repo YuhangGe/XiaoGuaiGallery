@@ -40,3 +40,6 @@
 "App_Name" = "小乖看谱";
 "Search" = "搜索";
 "Back" = "返回";
+"Prompt_Title"="请输入乐谱歌曲名称";
+"Photo_Name_Exist" = "名称已经存在，不允许重复！";
+"Import_Photo_Success" = "导入乐谱成功！";

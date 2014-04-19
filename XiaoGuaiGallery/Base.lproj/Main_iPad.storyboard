@@ -60,6 +60,14 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="GKN-nr-PwU">
+                                            <rect key="frame" x="170" y="218" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="9Z0-KM-AUR"/>
+                                                <constraint firstAttribute="width" constant="32" id="y7c-x6-xyk"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -67,15 +75,17 @@
                                     <constraint firstItem="zz2-jo-aWh" firstAttribute="top" secondItem="0fg-FY-A0J" secondAttribute="top" id="1hd-OR-enJ"/>
                                     <constraint firstAttribute="trailing" secondItem="OPW-Dd-137" secondAttribute="trailing" id="6Aj-yR-JqA"/>
                                     <constraint firstAttribute="bottom" secondItem="OPW-Dd-137" secondAttribute="bottom" id="8ud-Na-041"/>
+                                    <constraint firstItem="OPW-Dd-137" firstAttribute="top" secondItem="GKN-nr-PwU" secondAttribute="bottom" constant="8" id="ByG-f9-CFc"/>
                                     <constraint firstAttribute="trailing" secondItem="zz2-jo-aWh" secondAttribute="trailing" id="E4l-re-3a7"/>
                                     <constraint firstItem="OPW-Dd-137" firstAttribute="top" secondItem="zz2-jo-aWh" secondAttribute="bottom" id="QAR-Dj-obP"/>
                                     <constraint firstItem="OPW-Dd-137" firstAttribute="leading" secondItem="0fg-FY-A0J" secondAttribute="leading" id="dkp-gj-YL6"/>
+                                    <constraint firstAttribute="trailing" secondItem="GKN-nr-PwU" secondAttribute="trailing" constant="8" id="eZu-lw-VL6"/>
                                     <constraint firstItem="zz2-jo-aWh" firstAttribute="leading" secondItem="0fg-FY-A0J" secondAttribute="leading" id="lX6-ps-j1B"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="checkIcon" destination="GKN-nr-PwU" id="zKk-Rj-hhL"/>
                                     <outlet property="imageView" destination="zz2-jo-aWh" id="UxU-75-Yud"/>
                                     <outlet property="titleLabel" destination="OPW-Dd-137" id="mTc-gr-CMo"/>
-                                    <segue destination="zRw-R3-7vT" kind="push" identifier="showDetail" id="HwZ-PO-rJY"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -86,6 +96,9 @@
                     </collectionView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Gallery" id="v99-ql-OxB"/>
+                    <connections>
+                        <segue destination="zRw-R3-7vT" kind="push" identifier="showDetailSegue" id="HfB-gn-bcE"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgO-2Z-lSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,6 +145,9 @@
             <point key="canvasLocation" x="1432" y="-272"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CheckIcon" width="31" height="31"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

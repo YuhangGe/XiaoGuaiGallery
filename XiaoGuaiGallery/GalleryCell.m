@@ -40,14 +40,21 @@
     nf.size.height = LAYOUT_TITLE_HEIGHT[self.curLayoutType];
     self.titleLabel.frame = nf;
     [self.titleLabel setFont:[UIFont systemFontOfSize:LAYOUT_TITLE_FONTSIZE[self.curLayoutType]]];
+    self.checkIcon.hidden = self.isSelected ? NO : YES;
 }
-/*
+
+- (void) setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    self.checkIcon.hidden = selected ? NO : YES;
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+//- (void)drawRect:(CGRect)rect
+//{
+//    [super drawRect:rect];
+//    NSLog(@"c draw");
+//}
+
 
 @end

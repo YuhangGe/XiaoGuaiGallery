@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) int curLayoutType;
 @property (nonatomic) GalleryPhoto* photo;
+@property (weak, nonatomic) IBOutlet UIImageView *checkIcon;
 
 @end

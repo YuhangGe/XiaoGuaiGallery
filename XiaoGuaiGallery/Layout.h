@@ -23,3 +23,4 @@ extern int const LAYOUT_MIN_LINE_SPACE[];
 extern int const LAYOUT_MIN_CELL_SPACE[];
 
 extern CGSize const SEARCH_DIALOG_SIZE;
+extern int const SEARCH_POPOVER_HEIGHT;

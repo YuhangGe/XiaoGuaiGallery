@@ -4,9 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchDialogViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController">
             <connections>
-                <outlet property="searchBar" destination="HHm-Ic-iB6" id="uEm-4t-bfy"/>
+                <outlet property="searchBar" destination="HHm-Ic-iB6" id="WLe-tM-Ip4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,7 +20,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="NII-sP-6P2"/>
+                        <outlet property="delegate" destination="-1" id="4vh-0l-0qY"/>
                     </connections>
                 </searchBar>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKx-yd-WTa">
@@ -30,7 +30,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="search:" destination="-1" eventType="touchUpInside" id="YLv-Lc-LX2"/>
+                        <action selector="search:" destination="-1" eventType="touchUpInside" id="u0L-Wh-2Td"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CJ-Sb-6oO">
@@ -40,7 +40,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="showAll:" destination="-1" eventType="touchUpInside" id="Wqz-64-Rgo"/>
+                        <action selector="showAll:" destination="-1" eventType="touchUpInside" id="Bly-th-IP6"/>
                     </connections>
                 </button>
             </subviews>

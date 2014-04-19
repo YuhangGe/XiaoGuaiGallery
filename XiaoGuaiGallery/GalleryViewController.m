@@ -13,20 +13,30 @@
 #import "GalleryCell.h"
 #import "GalleryDetailController.h"
 #import "CTAssetsPickerController.h"
-#import "SearchDialogViewController.h"
+#import "SearchViewController.h"
+#import "MBProgressHUD.h"
+#import "TransitionDelegate.h"
 
 NSString * const GalleryCellIdentifier = @"GalleryCell";
 NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 
 @interface GalleryViewController ()
-<UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchDialogViewControllerDelegate>
+<UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchViewControllerDelegate, UIAlertViewDelegate>
 
 @property(nonatomic) NSString* docRootPath;
-@property (nonatomic, copy) NSArray *assets;
+@property (nonatomic, copy) NSMutableArray *assets;
 @property (nonatomic, strong) UIPopoverController *popover;
+@property (nonatomic, strong) SearchViewController* modalSearchView;
 
 @property(nonatomic, copy) NSString* curSearchText;
 @property(nonatomic) NSMutableArray* curPicArray;
+
+@property(nonatomic) BOOL editing;
+@property(nonatomic) NSMutableArray* selectPicArray;
+
+@property(nonatomic) NSArray* leftBarArray;
+
+@property (nonatomic, strong) TransitionDelegate *transitionController;
 
 @end
 
@@ -55,7 +65,10 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 {
     [super viewDidLoad];
     
-        
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.transitionController = [[TransitionDelegate alloc] init];
+    }
+    
     // Do any additional setup after loading the view.
     [self setupNavigationBarAndToolBar];
 
@@ -68,11 +81,33 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     [self reloadImages];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if(self.curLayoutType == 0 || self.curLayoutType==1) {
-        [self.collectionView setContentOffset:CGPointMake(0, 22) animated:YES];
-    }
+//- (void) viewDidAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    if(self.curLayoutType == 0 || self.curLayoutType==1) {
+//        [self.collectionView setContentOffset:CGPointMake(0, 22) animated:YES];
+//    }
+//}
+
+- (void) alert:(NSString*) message {
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(message, nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
+    [alertView show];
+}
+- (void) alertComplete:(NSString*) message {
+    MBProgressHUD* HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+	
+	// The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
+	// Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
+	HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+	
+	// Set custom view mode
+	HUD.mode = MBProgressHUDModeCustomView;
+	
+	HUD.delegate = nil;
+	HUD.labelText = NSLocalizedString(message, nil);
+	
+	[HUD show:YES];
+	[HUD hide:YES afterDelay:3];
 }
 
 #pragma mark - Navigation Bar & Event
@@ -92,9 +127,9 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 //    } else {
 //        leftBarArray = @[addItem];
 //    }
-    NSArray* leftBarArray = @[addItem, searchItem];
+    self.leftBarArray = @[addItem, searchItem];
     
-    self.navigationItem.leftBarButtonItems = leftBarArray;
+    self.navigationItem.leftBarButtonItems = self.leftBarArray;
     
     UIBarButtonItem *selectItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Select", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(onSelectButtonClick:)];
     
@@ -118,6 +153,9 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 -(void) onAddButtonClick:(id)sender {
     if (!self.assets)
         self.assets = [[NSMutableArray alloc] init];
+    else {
+        [self.assets removeAllObjects];
+    }
     
     CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
     picker.assetsFilter         = [ALAssetsFilter allPhotos];
@@ -142,24 +180,62 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 -(void) onSearchButtonClick:(id)sender {
     if (self.curLayoutType >= 2) {
         //ipad
-        SearchDialogViewController *searchDialogViewController = [[SearchDialogViewController alloc] initWithNibName:@"SearchDialogViewController" bundle:nil];
+        SearchViewController *searchViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController_iPad" bundle:nil];
         
-        searchDialogViewController.delegate = self;
-        searchDialogViewController.curSearchText = self.curSearchText;
+        searchViewController.preferredContentSize = SEARCH_DIALOG_SIZE;
+        searchViewController.delegate = self;
+        searchViewController.curSearchText = self.curSearchText;
         
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:searchDialogViewController];
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:searchViewController];
         [self.popover setDelegate:self];
         [self.popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else {
         
+    } else {
+        if(!self.modalSearchView) {
+            SearchViewController* searchViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController_iPhone" bundle:nil];
+            
+            searchViewController.delegate = self;
+            
+            [searchViewController setTransitioningDelegate:self.transitionController];
+            searchViewController.modalPresentationStyle= UIModalPresentationCustom;
+            self.modalSearchView = searchViewController;
+        }
+        
+        self.modalSearchView.curSearchText = self.curSearchText;
+
+        [self presentViewController:self.modalSearchView animated:YES completion:nil];
+
     }
 }
 
 -(void)onSelectButtonClick:(id)sender {
-    if(self.navigationController.isToolbarHidden) {
+    UIBarButtonItem* editButton = sender;
+    
+    [self.selectPicArray removeAllObjects];
+
+    if(!self.editing) {
+        UIBarButtonItem* btn = self.toolbarItems[0]; //rename button
+        btn.enabled = NO;
+        btn = self.toolbarItems[2]; //trash button
+        btn.enabled = NO;
+        self.editing = YES;
+        
+        editButton.title = NSLocalizedString(@"Done", nil);
+        self.navigationItem.leftBarButtonItems = nil;
+        [self.collectionView setAllowsMultipleSelection:YES];
         [self.navigationController setToolbarHidden:NO animated:YES];
     } else {
+        
+        self.editing = NO;
+        editButton.title = NSLocalizedString(@"Select", nil);
+        self.navigationItem.leftBarButtonItems = self.leftBarArray;
         [self.navigationController setToolbarHidden:YES animated:YES];
+        [self.collectionView setAllowsMultipleSelection:NO];
+        
+        for(NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+            [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        }
+        
     }
 }
 
@@ -174,19 +250,29 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 #pragma mark - deal Search delegate
 
 //search text changed
-- (void) searchDialogViewController:(NSString *)searchTextInput {
+- (void) searchViewController:(NSString *)searchTextInput {
     if(self.popover != nil) {
         [self.popover dismissPopoverAnimated:YES];
     }
-
+    if([self.modalSearchView isViewLoaded]) {
+        [self.modalSearchView setTransitioningDelegate:self.transitionController];
+        self.modalSearchView.modalPresentationStyle= UIModalPresentationCustom;
+        [self.modalSearchView dismissViewControllerAnimated:YES completion:nil];
+    }
+    
     self.curSearchText = searchTextInput;
     [self doSearchFiler];
 }
 
 //search canceled
-- (void) searchDialogViewController {
+- (void) searchViewController {
     if(self.popover != nil) {
         [self.popover dismissPopoverAnimated:YES];
+    }
+    if([self.modalSearchView isViewLoaded]) {
+        [self.modalSearchView setTransitioningDelegate:self.transitionController];
+        self.modalSearchView.modalPresentationStyle= UIModalPresentationCustom;
+        [self.modalSearchView dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -208,7 +294,21 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     
     self.assets = [NSMutableArray arrayWithArray:assets];
     
-    [self importPhotos];
+    UIAlertView* promptView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(@"Prompt_Title", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
+    promptView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [promptView show];
+//    [self importPhotos];
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex != 1) {
+        return;
+    }
+    NSString* title = [[alertView textFieldAtIndex:0].text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if(title.length==0) {
+        return;
+    }
+    [self importPhotos:title];
 }
 
 //- (BOOL)assetsPickerController:(CTAssetsPickerController *)picker shouldEnableAssetForSelection:(ALAsset *)asset
@@ -234,6 +334,12 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     } else {
         self.curPicArray = [[NSMutableArray alloc] init];
     }
+    if(self.selectPicArray) {
+        [self.selectPicArray removeAllObjects];
+    } else {
+        self.selectPicArray = [[NSMutableArray alloc] init];
+    }
+    
     self.curSearchText = @"";
     
     static NSArray* imgExt;
@@ -329,28 +435,73 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     [self.collectionView reloadData];
 }
 
-- (void) importPhotos {
-    UIAlertView* promptView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(@"Promot_Title", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
-    promptView.alertViewStyle = UIAlertViewStylePlainTextInput;
+- (void) importPhotos:(NSString*) title {
+    for(GalleryPhoto* p in self.picArray) {
+        if([p.title hasPrefix:title]) {
+            [self alert:@"Photo_Name_Exist"];
+            return;
+        }
+    }
+    int cur = 0;
+    for (ALAsset* asset in self.assets) {
+        UIImage* img = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
+        NSData* data = UIImagePNGRepresentation(img);
+        NSString* save_file = [self.docRootPath stringByAppendingFormat:@"%@(%d).png", title, cur+1];
+
+        if(![data writeToFile:save_file atomically:TRUE]) {
+            [self alert:@"Import_Photo_Error"];
+            return;
+        }
+        cur++;
+    }
+    [self alertComplete:@"Import_Photo_Success"];
     
-    
-//    for (ALAsset* asset in self.assets) {
-//        UIImage* img = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
-//        NSData* data = UIImagePNGRepresentation(img);
-//        NSString* save_file = [path stringByAppendingFormat:@"/%@(%d).png", file_name, cur+1];
-//        //                NSLog(@"file:%@", save_file);
-//        if(![data writeToFile:save_file atomically:TRUE]) {
-//            [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error on write image file"]
-//                                        callbackId:command.callbackId ];
-//        } else {
-//            //                    NSLog(@"write image %@", save_file);
-//        }
-//
-//    }
+    //reload Images
+    [self reloadImages];
+    [self.collectionView reloadData];
+
 }
 
 - (void) saveThumbnail:(NSString*) imageName imageExtension:(NSString*) imageExt {
-    NSLog(@"save");
+//    NSLog(@"save");
+    
+    float dst_w = 300;
+    float dst_h = 300;
+    
+    float f_scale = 1.0;
+    
+    NSString* src_file_path = [self.docRootPath stringByAppendingFormat:@"%@.%@", imageName, imageExt];
+    UIImage* src_img = [UIImage imageWithContentsOfFile:src_file_path];
+    
+    if(src_img == nil) {
+        NSLog(@"something wrong!");
+        return;
+    }
+    
+    float src_w = src_img.size.width, src_h = src_img.size.height;
+    float f_w = src_w / dst_w, f_h = src_h / dst_h;
+    if(f_w>f_h){
+        f_scale = f_w;
+    } else {
+        f_scale = f_h;
+    }
+    
+    CGSize newSize = CGSizeMake(src_w/f_scale,  src_h/f_scale);
+    
+    UIGraphicsBeginImageContext(newSize);
+    [src_img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* dst_small = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData *pngData = UIImagePNGRepresentation(dst_small);
+    
+    NSString* dst_file_path = [self.docRootPath stringByAppendingFormat:@"thumbnails/%@.thumb.png", imageName];
+    
+    if(![pngData writeToFile:dst_file_path atomically:YES])
+    {
+        NSLog(@"error on write thumbnail image");
+    }
+
 }
 
 - (UIImage*) loadImage:(GalleryPhoto*) photo {
@@ -419,7 +570,7 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    if ([[segue identifier] isEqualToString:@"showDetailSegue"]) {
         NSArray *indexPaths = [self.collectionView indexPathsForSelectedItems];
         GalleryDetailController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
@@ -428,8 +579,6 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
         destViewController.picArray = self.curPicArray;
         destViewController.curImageIndex = indexPath.row;
         destViewController.docRootPath = self.docRootPath;
-       
-        [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
 }
 
@@ -440,107 +589,95 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 //    return 1;
 //}
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 //    NSLog([NSString stringWithFormat:@"number %@", [NSNumber numberWithInt:self.picArray.count]]);
     return self.curPicArray.count;
 }
 //
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GalleryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GalleryCellIdentifier forIndexPath:indexPath];
     cell.photo = self.curPicArray[indexPath.row];
     cell.curLayoutType = self.curLayoutType;
     return cell;
 }
 //
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    /*
-     * 如果是iphone，我们把搜索框放在collection view的header部分。
-     */
-    if(self.curLayoutType==0 || self.curLayoutType==1) {
-        UICollectionReusableView *view =
-        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                           withReuseIdentifier:GallerySearchResuableView
-                                                  forIndexPath:indexPath];
-        return view;
-    } else {
-        return nil;
-    }
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    /*
+//     * 如果是iphone，我们把搜索框放在collection view的header部分。
+//     */
+//    if(self.curLayoutType==0 || self.curLayoutType==1) {
+//        UICollectionReusableView *view =
+//        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+//                                           withReuseIdentifier:GallerySearchResuableView
+//                                                  forIndexPath:indexPath];
+//        return view;
+//    } else {
+//        return nil;
+//    }
+//}
 //
 //
 #pragma mark - Collection View Delegate
 //
 //- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    CTAssetsViewCell *cell = (CTAssetsViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    
-//    if (!cell.isEnabled)
-//        return NO;
-//    else if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:shouldSelectAsset:)])
-//        return [self.picker.delegate assetsPickerController:self.picker shouldSelectAsset:asset];
-//    else
-//        return YES;
+
 //}
 //
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    [self.picker selectAsset:asset];
-//    
-//    if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:didSelectAsset:)])
-//        [self.picker.delegate assetsPickerController:self.picker didSelectAsset:asset];
+- (void) afterCellSelected {
+    UIBarButtonItem* renameButton = self.toolbarItems[0];
+    UIBarButtonItem* trashButton = self.toolbarItems[2];
+    
+    if([self.selectPicArray count]>0) {
+        renameButton.enabled = YES;
+        trashButton.enabled = YES;
+        
+    } else {
+        renameButton.enabled = NO;
+        trashButton.enabled = NO;
+        
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath {
+    if(self.editing) {
+        [self.selectPicArray addObject:[NSNumber numberWithInt:indexPath.row]];
+        [self afterCellSelected];
+    } else {
+        [self performSegueWithIdentifier:@"showDetailSegue" sender:self];
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
 }
 
 //- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:shouldDeselectAsset:)])
-//        return [self.picker.delegate assetsPickerController:self.picker shouldDeselectAsset:asset];
-//    else
-//        return YES;
+
 //}
 //
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    [self.picker deselectAsset:asset];
-//    
-//    if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:didDeselectAsset:)])
-//        [self.picker.delegate assetsPickerController:self.picker didDeselectAsset:asset];
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.editing) {
+        for (NSNumber* idx in self.selectPicArray) {
+            if([idx integerValue]==indexPath.row) {
+                [self.selectPicArray removeObject:idx];
+                [self afterCellSelected];
+                return;
+            }
+        }
+    }
 }
 //
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:shouldHighlightAsset:)])
-//        return [self.picker.delegate assetsPickerController:self.picker shouldHighlightAsset:asset];
-//    else
-//        return YES;
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
 //}
 //
 //- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:didHighlightAsset:)])
-//        [self.picker.delegate assetsPickerController:self.picker didHighlightAsset:asset];
+
 //}
 //
 //- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-//    
-//    if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:didUnhighlightAsset:)])
-//        [self.picker.delegate assetsPickerController:self.picker didUnhighlightAsset:asset];
+
 //}
 
 @end

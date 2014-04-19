@@ -40,3 +40,6 @@
 "App_Name" = "Photo Gallery";
 "Search" = "Search";
 "Back" = "Back";
+"Prompt_Title" = "Please Enter Photo Name";
+"Photo_Name_Exist" = "Error: this name has been used!";
+"Import_Photo_Success" = "Import Photo Success!";

@@ -6,17 +6,17 @@
 //  Copyright (c) 2014年 nju. All rights reserved.
 //
 
-#import "SearchDialogViewController.h"
+#import "SearchViewController.h"
 #import "Layout.h"
 
-@interface SearchDialogViewController ()
+@interface SearchViewController ()
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 
 @end
 
-@implementation SearchDialogViewController
+@implementation SearchViewController
 
 - (void) setSearchText:(NSString *)searchText {
     if(searchText == nil) {
@@ -25,15 +25,15 @@
     self.searchBar.text = searchText;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.preferredContentSize = SEARCH_DIALOG_SIZE;
-    }
-    return self;
-}
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//
+//    }
+//    return self;
+//}
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -65,8 +65,8 @@
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    if([self.delegate respondsToSelector:@selector(searchDialogViewController)]) {
-        [self.delegate searchDialogViewController];
+    if([self.delegate respondsToSelector:@selector(searchViewController)]) {
+        [self.delegate searchViewController];
     }
 }
 
@@ -77,7 +77,7 @@
 
 - (void) onSearchTextInput:(NSString*) searchText {
 //    if([self.delegate respondsToSelector:@selector(searchDialogViewController:)]) {
-        [self.delegate searchDialogViewController:searchText];
+        [self.delegate searchViewController:searchText];
 //    }
 }
 @end

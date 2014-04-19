@@ -10,6 +10,21 @@
 		1792631618F910F10000F9C7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792631518F910F10000F9C7 /* GalleryViewController.m */; };
 		1792633A18F93A5D0000F9C7 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792633918F93A5D0000F9C7 /* GalleryCell.m */; };
 		1792633E18FA5BCE0000F9C7 /* GalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792633D18FA5BCE0000F9C7 /* GalleryPhoto.m */; };
+		1799984019021E930018BAB2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1799983F19021E930018BAB2 /* MBProgressHUD.m */; };
+		1799984F1902207A0018BAB2 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998431902207A0018BAB2 /* 37x-Checkmark.png */; };
+		179998501902207A0018BAB2 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998441902207A0018BAB2 /* 37x-Checkmark@2x.png */; };
+		179998511902207A0018BAB2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998451902207A0018BAB2 /* Default-568h@2x.png */; };
+		179998521902207A0018BAB2 /* Default-iOS7-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998461902207A0018BAB2 /* Default-iOS7-568h@2x.png */; };
+		179998531902207A0018BAB2 /* Default-iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998471902207A0018BAB2 /* Default-iOS7@2x.png */; };
+		179998541902207A0018BAB2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998481902207A0018BAB2 /* Default.png */; };
+		179998551902207A0018BAB2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 179998491902207A0018BAB2 /* Default@2x.png */; };
+		179998561902207A0018BAB2 /* Icon-iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1799984A1902207A0018BAB2 /* Icon-iOS7@2x.png */; };
+		179998571902207A0018BAB2 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1799984B1902207A0018BAB2 /* Icon-Small.png */; };
+		179998581902207A0018BAB2 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1799984C1902207A0018BAB2 /* Icon-Small@2x.png */; };
+		179998591902207A0018BAB2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1799984D1902207A0018BAB2 /* Icon.png */; };
+		1799985A1902207A0018BAB2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1799984E1902207A0018BAB2 /* Icon@2x.png */; };
+		179998661902503A0018BAB2 /* AnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 179998631902503A0018BAB2 /* AnimatedTransitioning.m */; };
+		179998671902503A0018BAB2 /* TransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 179998651902503A0018BAB2 /* TransitionDelegate.m */; };
 		17A020EB18FA7E8700FA5013 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A020EA18FA7E8700FA5013 /* Layout.m */; };
 		17A0210818FCDA5D00FA5013 /* ALAsset+isEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A020F418FCDA5D00FA5013 /* ALAsset+isEqual.m */; };
 		17A0210918FCDA5D00FA5013 /* ALAssetsGroup+isEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A020F618FCDA5D00FA5013 /* ALAssetsGroup+isEqual.m */; };
@@ -23,8 +38,10 @@
 		17A0211118FCDA5E00FA5013 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A0210518FCDA5D00FA5013 /* Images.xcassets */; };
 		17A0211218FCDA5E00FA5013 /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0210718FCDA5D00FA5013 /* NSDate+timeDescription.m */; };
 		17A0211918FD0E7600FA5013 /* GalleryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0211818FD0E7600FA5013 /* GalleryDetailController.m */; };
-		17A021311900E63D00FA5013 /* SearchDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0212F1900E63D00FA5013 /* SearchDialogViewController.m */; };
-		17A021331900EBD100FA5013 /* SearchDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A021351900EBD100FA5013 /* SearchDialogViewController.xib */; };
+		17A021311900E63D00FA5013 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0212F1900E63D00FA5013 /* SearchViewController.m */; };
+		17A021331900EBD100FA5013 /* SearchViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A021351900EBD100FA5013 /* SearchViewController_iPad.xib */; };
+		17CE72B219025B240038170A /* SearchViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE72B419025B240038170A /* SearchViewController_iPhone.xib */; };
+		17CE72BB190260060038170A /* AnimatedDismissTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */; };
 		17D2035018F7DA1E004A0D5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2034F18F7DA1E004A0D5E /* Foundation.framework */; };
 		17D2035218F7DA1E004A0D5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */; };
 		17D2035418F7DA1E004A0D5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2035318F7DA1E004A0D5E /* UIKit.framework */; };
@@ -60,6 +77,25 @@
 		1792633B18FA57630000F9C7 /* Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
 		1792633C18FA5BCE0000F9C7 /* GalleryPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryPhoto.h; sourceTree = "<group>"; };
 		1792633D18FA5BCE0000F9C7 /* GalleryPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryPhoto.m; sourceTree = "<group>"; };
+		1799983D19021E930018BAB2 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD-Prefix.pch"; path = "MBProcessHUD/MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		1799983E19021E930018BAB2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProcessHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		1799983F19021E930018BAB2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProcessHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		179998431902207A0018BAB2 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		179998441902207A0018BAB2 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		179998451902207A0018BAB2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		179998461902207A0018BAB2 /* Default-iOS7-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-iOS7-568h@2x.png"; sourceTree = "<group>"; };
+		179998471902207A0018BAB2 /* Default-iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-iOS7@2x.png"; sourceTree = "<group>"; };
+		179998481902207A0018BAB2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		179998491902207A0018BAB2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1799984A1902207A0018BAB2 /* Icon-iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-iOS7@2x.png"; sourceTree = "<group>"; };
+		1799984B1902207A0018BAB2 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		1799984C1902207A0018BAB2 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		1799984D1902207A0018BAB2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		1799984E1902207A0018BAB2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		179998621902503A0018BAB2 /* AnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatedTransitioning.h; path = CustomTransition/AnimatedTransitioning.h; sourceTree = "<group>"; };
+		179998631902503A0018BAB2 /* AnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatedTransitioning.m; path = CustomTransition/AnimatedTransitioning.m; sourceTree = "<group>"; };
+		179998641902503A0018BAB2 /* TransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransitionDelegate.h; path = CustomTransition/TransitionDelegate.h; sourceTree = "<group>"; };
+		179998651902503A0018BAB2 /* TransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransitionDelegate.m; path = CustomTransition/TransitionDelegate.m; sourceTree = "<group>"; };
 		17A020EA18FA7E8700FA5013 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layout.m; sourceTree = "<group>"; };
 		17A020F318FCDA5D00FA5013 /* ALAsset+isEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAsset+isEqual.h"; sourceTree = "<group>"; };
 		17A020F418FCDA5D00FA5013 /* ALAsset+isEqual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+isEqual.m"; sourceTree = "<group>"; };
@@ -84,12 +120,16 @@
 		17A0210718FCDA5D00FA5013 /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
 		17A0211718FD0E7600FA5013 /* GalleryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryDetailController.h; sourceTree = "<group>"; };
 		17A0211818FD0E7600FA5013 /* GalleryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryDetailController.m; sourceTree = "<group>"; };
-		17A0212E1900E63D00FA5013 /* SearchDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDialogViewController.h; sourceTree = "<group>"; };
-		17A0212F1900E63D00FA5013 /* SearchDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDialogViewController.m; sourceTree = "<group>"; };
-		17A021361900EBEB00FA5013 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchDialogViewController.xib; sourceTree = "<group>"; };
+		17A0212E1900E63D00FA5013 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		17A0212F1900E63D00FA5013 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		17A021361900EBEB00FA5013 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewController_iPad.xib; sourceTree = "<group>"; };
 		17A0213B1900ECEE00FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		17A0213D1900ED3000FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
-		17A0213F1900EE5C00FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchDialogViewController.strings"; sourceTree = "<group>"; };
+		17A0213F1900EE5C00FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewController_iPad.strings"; sourceTree = "<group>"; };
+		17CE72B319025B240038170A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewController_iPhone.xib; sourceTree = "<group>"; };
+		17CE72B819025B9B0038170A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewController_iPhone.strings"; sourceTree = "<group>"; };
+		17CE72B9190260060038170A /* AnimatedDismissTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedDismissTransitioning.h; sourceTree = "<group>"; };
+		17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedDismissTransitioning.m; sourceTree = "<group>"; };
 		17D2034C18F7DA1E004A0D5E /* XiaoGuaiGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoGuaiGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D2034F18F7DA1E004A0D5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -145,6 +185,57 @@
 			name = XiaoGuaiPicker;
 			sourceTree = "<group>";
 		};
+		1799983C19021DCF0018BAB2 /* MBProcessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				1799983D19021E930018BAB2 /* MBProgressHUD-Prefix.pch */,
+				1799983E19021E930018BAB2 /* MBProgressHUD.h */,
+				1799983F19021E930018BAB2 /* MBProgressHUD.m */,
+			);
+			name = MBProcessHUD;
+			sourceTree = "<group>";
+		};
+		179998411902206A0018BAB2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				17999842190220790018BAB2 /* images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		17999842190220790018BAB2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				179998431902207A0018BAB2 /* 37x-Checkmark.png */,
+				179998441902207A0018BAB2 /* 37x-Checkmark@2x.png */,
+				179998451902207A0018BAB2 /* Default-568h@2x.png */,
+				179998461902207A0018BAB2 /* Default-iOS7-568h@2x.png */,
+				179998471902207A0018BAB2 /* Default-iOS7@2x.png */,
+				179998481902207A0018BAB2 /* Default.png */,
+				179998491902207A0018BAB2 /* Default@2x.png */,
+				1799984A1902207A0018BAB2 /* Icon-iOS7@2x.png */,
+				1799984B1902207A0018BAB2 /* Icon-Small.png */,
+				1799984C1902207A0018BAB2 /* Icon-Small@2x.png */,
+				1799984D1902207A0018BAB2 /* Icon.png */,
+				1799984E1902207A0018BAB2 /* Icon@2x.png */,
+			);
+			name = images;
+			path = Resources/images;
+			sourceTree = "<group>";
+		};
+		1799986119024FDB0018BAB2 /* CustomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				179998621902503A0018BAB2 /* AnimatedTransitioning.h */,
+				179998631902503A0018BAB2 /* AnimatedTransitioning.m */,
+				179998641902503A0018BAB2 /* TransitionDelegate.h */,
+				179998651902503A0018BAB2 /* TransitionDelegate.m */,
+				17CE72B9190260060038170A /* AnimatedDismissTransitioning.h */,
+				17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */,
+			);
+			name = CustomTransition;
+			sourceTree = "<group>";
+		};
 		17A020F218FCDA5D00FA5013 /* CTAssetsPickerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,8 +267,11 @@
 		17D2034318F7DA1E004A0D5E = {
 			isa = PBXGroup;
 			children = (
+				179998411902206A0018BAB2 /* Resources */,
+				1799983C19021DCF0018BAB2 /* MBProcessHUD */,
 				17A020F218FCDA5D00FA5013 /* CTAssetsPickerController */,
 				1792631318F9001E0000F9C7 /* XiaoGuaiPicker */,
+				1799986119024FDB0018BAB2 /* CustomTransition */,
 				17D2035518F7DA1E004A0D5E /* XiaoGuaiGallery */,
 				17D2037718F7DA1E004A0D5E /* XiaoGuaiGalleryTests */,
 				17D2034E18F7DA1E004A0D5E /* Frameworks */,
@@ -212,9 +306,10 @@
 				1792633D18FA5BCE0000F9C7 /* GalleryPhoto.m */,
 				17D2035E18F7DA1E004A0D5E /* AppDelegate.h */,
 				17D2035F18F7DA1E004A0D5E /* AppDelegate.m */,
-				17A0212E1900E63D00FA5013 /* SearchDialogViewController.h */,
-				17A0212F1900E63D00FA5013 /* SearchDialogViewController.m */,
-				17A021351900EBD100FA5013 /* SearchDialogViewController.xib */,
+				17A0212E1900E63D00FA5013 /* SearchViewController.h */,
+				17A0212F1900E63D00FA5013 /* SearchViewController.m */,
+				17A021351900EBD100FA5013 /* SearchViewController_iPad.xib */,
+				17CE72B419025B240038170A /* SearchViewController_iPhone.xib */,
 				17D2036118F7DA1E004A0D5E /* Main_iPhone.storyboard */,
 				17D2036418F7DA1E004A0D5E /* Main_iPad.storyboard */,
 				1792633B18FA57630000F9C7 /* Layout.h */,
@@ -346,12 +441,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				179998591902207A0018BAB2 /* Icon.png in Resources */,
+				179998571902207A0018BAB2 /* Icon-Small.png in Resources */,
+				179998561902207A0018BAB2 /* Icon-iOS7@2x.png in Resources */,
 				17D2038D18F7DBA8004A0D5E /* Localizable.strings in Resources */,
 				17D2036618F7DA1E004A0D5E /* Main_iPad.storyboard in Resources */,
+				179998581902207A0018BAB2 /* Icon-Small@2x.png in Resources */,
 				17D2036B18F7DA1E004A0D5E /* Images.xcassets in Resources */,
-				17A021331900EBD100FA5013 /* SearchDialogViewController.xib in Resources */,
+				179998511902207A0018BAB2 /* Default-568h@2x.png in Resources */,
+				179998531902207A0018BAB2 /* Default-iOS7@2x.png in Resources */,
+				17A021331900EBD100FA5013 /* SearchViewController_iPad.xib in Resources */,
+				1799984F1902207A0018BAB2 /* 37x-Checkmark.png in Resources */,
+				179998541902207A0018BAB2 /* Default.png in Resources */,
+				179998501902207A0018BAB2 /* 37x-Checkmark@2x.png in Resources */,
 				17D2036318F7DA1E004A0D5E /* Main_iPhone.storyboard in Resources */,
 				17A0211118FCDA5E00FA5013 /* Images.xcassets in Resources */,
+				1799985A1902207A0018BAB2 /* Icon@2x.png in Resources */,
+				17CE72B219025B240038170A /* SearchViewController_iPhone.xib in Resources */,
+				179998521902207A0018BAB2 /* Default-iOS7-568h@2x.png in Resources */,
+				179998551902207A0018BAB2 /* Default@2x.png in Resources */,
 				17D2035A18F7DA1E004A0D5E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,11 +486,15 @@
 				17A0210A18FCDA5D00FA5013 /* CTAssetsGroupViewCell.m in Sources */,
 				1792631618F910F10000F9C7 /* GalleryViewController.m in Sources */,
 				17A0210818FCDA5D00FA5013 /* ALAsset+isEqual.m in Sources */,
+				1799984019021E930018BAB2 /* MBProgressHUD.m in Sources */,
 				17D2036018F7DA1E004A0D5E /* AppDelegate.m in Sources */,
-				17A021311900E63D00FA5013 /* SearchDialogViewController.m in Sources */,
+				17A021311900E63D00FA5013 /* SearchViewController.m in Sources */,
+				179998661902503A0018BAB2 /* AnimatedTransitioning.m in Sources */,
 				1792633E18FA5BCE0000F9C7 /* GalleryPhoto.m in Sources */,
 				17A0211918FD0E7600FA5013 /* GalleryDetailController.m in Sources */,
 				17A020EB18FA7E8700FA5013 /* Layout.m in Sources */,
+				179998671902503A0018BAB2 /* TransitionDelegate.m in Sources */,
+				17CE72BB190260060038170A /* AnimatedDismissTransitioning.m in Sources */,
 				17A0210C18FCDA5E00FA5013 /* CTAssetsPickerConstants.m in Sources */,
 				17D2035C18F7DA1E004A0D5E /* main.m in Sources */,
 				17A0210D18FCDA5E00FA5013 /* CTAssetsPickerController.m in Sources */,
@@ -411,13 +523,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		17A021351900EBD100FA5013 /* SearchDialogViewController.xib */ = {
+		17A021351900EBD100FA5013 /* SearchViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				17A021361900EBEB00FA5013 /* Base */,
 				17A0213F1900EE5C00FA5013 /* zh-Hans */,
 			);
-			name = SearchDialogViewController.xib;
+			name = SearchViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		17CE72B419025B240038170A /* SearchViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17CE72B319025B240038170A /* Base */,
+				17CE72B819025B9B0038170A /* zh-Hans */,
+			);
+			name = SearchViewController_iPhone.xib;
 			sourceTree = "<group>";
 		};
 		17D2035818F7DA1E004A0D5E /* InfoPlist.strings */ = {
