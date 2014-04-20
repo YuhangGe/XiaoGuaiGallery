@@ -20,8 +20,11 @@
 NSString * const GalleryCellIdentifier = @"GalleryCell";
 NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 
+NSInteger const IMPORT_TAG = 0;
+NSInteger const RENAME_TAG = 1;
+
 @interface GalleryViewController ()
-<UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchViewControllerDelegate, UIAlertViewDelegate>
+<UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchViewControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property(nonatomic) NSString* docRootPath;
 @property (nonatomic, copy) NSMutableArray *assets;
@@ -81,12 +84,7 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     [self reloadImages];
 }
 
-//- (void) viewDidAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    if(self.curLayoutType == 0 || self.curLayoutType==1) {
-//        [self.collectionView setContentOffset:CGPointMake(0, 22) animated:YES];
-//    }
-//}
+
 
 - (void) alert:(NSString*) message {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(message, nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
@@ -107,7 +105,18 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 	HUD.labelText = NSLocalizedString(message, nil);
 	
 	[HUD show:YES];
-	[HUD hide:YES afterDelay:3];
+	[HUD hide:YES afterDelay:1];
+}
+- (void) alertError:(NSString*) message {
+    MBProgressHUD* HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+    
+    HUD.mode = MBProgressHUDModeText;
+    HUD.labelText = NSLocalizedString(message, nil);
+    HUD.delegate = nil;
+    
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
 }
 
 #pragma mark - Navigation Bar & Event
@@ -116,17 +125,7 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onAddButtonClick:)];
     
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(onSearchButtonClick:)];
-    
-//    NSArray* leftBarArray;
-//    /*
-//     * 如果是iphone，则不需要显示searchItem。searchBar会在collection view的header部分显示。
-//     *
-//     */
-//    if(self.curLayoutType == 2 || self.curLayoutType==3) {
-//        leftBarArray = @[addItem, searchItem];
-//    } else {
-//        leftBarArray = @[addItem];
-//    }
+
     self.leftBarArray = @[addItem, searchItem];
     
     self.navigationItem.leftBarButtonItems = self.leftBarArray;
@@ -240,11 +239,33 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 }
 
 -(void)onRenameButtonClick:(id)sender {
+    UIAlertView* promptView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(@"Rename_Title", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
     
+    
+    promptView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [promptView setTag:RENAME_TAG];
+    
+    [promptView show];
 }
 
 -(void)onTrashButtonClick:(id)sender {
+    UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Sure_Delete?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel_Delete", nil) destructiveButtonTitle:NSLocalizedString(@"Do_Delete", nil) otherButtonTitles: nil];
     
+    //[sheet showInView:self.view];
+    if(self.curLayoutType >=2 ) {
+        //ipad
+        [sheet showFromBarButtonItem:sender animated:YES];
+    } else {
+        //iphone
+        [sheet showInView:self.view];
+    }
+}
+
+#pragma mark - action sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 0) {
+        [self deleteSelectPhotos];
+    }
 }
 
 #pragma mark - deal Search delegate
@@ -295,9 +316,12 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     self.assets = [NSMutableArray arrayWithArray:assets];
     
     UIAlertView* promptView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(@"Prompt_Title", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
+    
+    
     promptView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [promptView setTag:IMPORT_TAG];
+    
     [promptView show];
-//    [self importPhotos];
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -308,7 +332,16 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     if(title.length==0) {
         return;
     }
-    [self importPhotos:title];
+    switch (alertView.tag) {
+        case IMPORT_TAG:
+            [self importPhotos:title];
+            break;
+        case RENAME_TAG:
+            [self renameSelectPhotos:title];
+            break;
+        default:
+            break;
+    }
 }
 
 //- (BOOL)assetsPickerController:(CTAssetsPickerController *)picker shouldEnableAssetForSelection:(ALAsset *)asset
@@ -416,7 +449,11 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     [imageExtList removeAllObjects];
     [imageNameList removeAllObjects];
     
-     
+    
+    UIBarButtonItem* btn = self.toolbarItems[0]; //rename button
+    btn.enabled = NO;
+    btn = self.toolbarItems[2]; //trash button
+    btn.enabled = NO;
     
 }
 
@@ -460,6 +497,79 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
     [self reloadImages];
     [self.collectionView reloadData];
 
+}
+
+- (void) renameSelectPhotos:(NSString*) newName {
+    if([self.selectPicArray count]==0) {
+        return;
+    }
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    BOOL success = YES;
+    int i = 1;
+    
+    for (NSNumber* n in self.selectPicArray) {
+        GalleryPhoto* p = [self.curPicArray objectAtIndex:[n intValue]];
+        
+        NSString* f_ext = [p.imageFile pathExtension];
+        NSString* fullPath = [self.docRootPath stringByAppendingString:p.imageFile];
+        NSString* thumbPath = [self.docRootPath stringByAppendingFormat:@"thumbnails/%@.thumb.png", p.title];
+        NSString* renameFullPath = [self.docRootPath stringByAppendingFormat:@"/%@(%d).%@", newName, i, f_ext];
+        NSString* renameThumbPath = [self.docRootPath stringByAppendingFormat:@"/thumbnails/%@(%d).thumb.png", newName, i];
+        
+        if(![fileManager moveItemAtPath:fullPath toPath:renameFullPath error:nil]) {
+            success = NO;
+            break;
+        }
+        
+        if(![fileManager moveItemAtPath:thumbPath toPath:renameThumbPath error:nil]) {
+            success = NO;
+            break;
+        }
+        
+        i++;
+    }
+    
+    if(success) {
+        [self alertComplete:@"Rename_Finish"];
+    } else {
+        [self alertError:@"Rename_Error"];
+    }
+    
+    [self reloadImages];
+    [self.collectionView reloadData];
+}
+
+- (void) deleteSelectPhotos {
+    if([self.selectPicArray count]==0) {
+        return;
+    }
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    
+    BOOL success = YES;
+    
+    for (NSNumber* n in self.selectPicArray) {
+        GalleryPhoto* p = [self.curPicArray objectAtIndex:[n intValue]];
+        NSString* fp = [self.docRootPath stringByAppendingString:p.imageFile];
+        if(![fileManager removeItemAtPath:fp error:nil]) {
+            success = NO;
+            break;
+        }
+        fp = [self.docRootPath stringByAppendingFormat:@"thumbnails/%@.thumb.png", p.title];
+        if(![fileManager removeItemAtPath:fp error:nil]) {
+            success = NO;
+            break;
+        }
+    }
+    if(success) {
+        [self alertComplete:@"Delete_Finish"];
+    } else {
+        [self alertError:@"Delete_Error"];
+    }
+    
+    
+    [self reloadImages];
+    [self.collectionView reloadData];
+    
 }
 
 - (void) saveThumbnail:(NSString*) imageName imageExtension:(NSString*) imageExt {

@@ -130,6 +130,14 @@
 		17CE72B819025B9B0038170A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewController_iPhone.strings"; sourceTree = "<group>"; };
 		17CE72B9190260060038170A /* AnimatedDismissTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedDismissTransitioning.h; sourceTree = "<group>"; };
 		17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedDismissTransitioning.m; sourceTree = "<group>"; };
+		17CE72BC190382460038170A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		17CE72BE19038C700038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SearchViewController_iPad.strings"; sourceTree = "<group>"; };
+		17CE72BF19038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SearchViewController_iPhone.strings"; sourceTree = "<group>"; };
+		17CE72C019038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
+		17CE72C119038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
+		17CE72C219038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		17CE72C319038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		17CE72C419038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		17D2034C18F7DA1E004A0D5E /* XiaoGuaiGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoGuaiGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D2034F18F7DA1E004A0D5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -424,6 +432,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 17D2034318F7DA1E004A0D5E;
 			productRefGroup = 17D2034D18F7DA1E004A0D5E /* Products */;
@@ -528,6 +537,7 @@
 			children = (
 				17A021361900EBEB00FA5013 /* Base */,
 				17A0213F1900EE5C00FA5013 /* zh-Hans */,
+				17CE72BE19038C700038170A /* zh-Hant */,
 			);
 			name = SearchViewController_iPad.xib;
 			sourceTree = "<group>";
@@ -537,6 +547,7 @@
 			children = (
 				17CE72B319025B240038170A /* Base */,
 				17CE72B819025B9B0038170A /* zh-Hans */,
+				17CE72BF19038C710038170A /* zh-Hant */,
 			);
 			name = SearchViewController_iPhone.xib;
 			sourceTree = "<group>";
@@ -546,6 +557,7 @@
 			children = (
 				17D2035918F7DA1E004A0D5E /* en */,
 				17D2038B18F7DB67004A0D5E /* zh-Hans */,
+				17CE72C319038C710038170A /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -555,6 +567,7 @@
 			children = (
 				17D2036218F7DA1E004A0D5E /* Base */,
 				17D2038918F7DB67004A0D5E /* zh-Hans */,
+				17CE72C019038C710038170A /* zh-Hant */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -564,6 +577,7 @@
 			children = (
 				17D2036518F7DA1E004A0D5E /* Base */,
 				17A0213D1900ED3000FA5013 /* zh-Hans */,
+				17CE72C119038C710038170A /* zh-Hant */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -573,6 +587,7 @@
 			children = (
 				17D2037B18F7DA1E004A0D5E /* en */,
 				17D2038C18F7DB67004A0D5E /* zh-Hans */,
+				17CE72C419038C710038170A /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -582,6 +597,8 @@
 			children = (
 				17D2038E18F7DBA8004A0D5E /* Base */,
 				17A0213B1900ECEE00FA5013 /* zh-Hans */,
+				17CE72BC190382460038170A /* en */,
+				17CE72C219038C710038170A /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

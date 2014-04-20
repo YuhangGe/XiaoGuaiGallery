@@ -1,0 +1,54 @@
+/* Navigation bar buttons */
+"Cancel" = "取消";
+"Done" = "完成";
+
+/* Title */
+"Photos" = "導入樂譜";
+
+/* No. of selected */
+"%ld Photo Selected" = "已選擇 %ld 張圖片";
+"%ld Photos Selected" = "已選擇 %ld 張圖片";
+"%ld Video Selected" = "已選擇 %ld 個視頻";
+"%ld Videos Selected" = "已選擇 %ld 個視頻";
+"%ld Items Selected" = "已選擇 %ld 個元素";
+
+/* Library Footer */
+"%ld Photos" = "共 %ld 張圖片";
+"%ld Videos" = "共 %ld 個視頻";
+"%ld Photos, %ld Videos" = "共 %1$ld 張圖片, %2$ld 個視頻";
+
+/* Message if privacy is not granted */
+"This app does not have access to your photos or videos." = "當前應用沒有權限訪問您的照片庫，可能是您之前拒絕了訪問請求。";
+"You can enable access in Privacy Settings." = "請轉到【設置】->【隱私】->【照片】為應用添加權限。";
+
+/* Message if no assets */
+"No Photos or Videos" = "沒有圖片或視頻";
+
+/* The parameter will be replaced by the device model name */
+"You can take photos and videos using the camera, or sync photos and videos onto your %@\nusing iTunes." = "請使用相機拍攝照片，或者通過 iTundes 將照片或視頻同步到您的 %@。";
+"You can sync photos and videos onto your %@ using iTunes." = "您可以使用 iTunes 將照片或視頻同步到 %@。";
+
+/* Accessibility labels */
+"Photo" = "照片";
+"Video" = "視頻";
+"Portrait" = "直向";
+"Landscape" = "橫向";
+
+"Select" = "選擇";
+"Rename" = "重命名";
+
+"App_Name" = "小乖看譜";
+"Search" = "搜索";
+"Back" = "返回";
+"Prompt_Title"="請輸入樂譜歌曲名稱";
+"Photo_Name_Exist" = "名稱已經存在，不允許重復！";
+"Import_Photo_Success" = "導入樂譜成功！";
+"Sure_Delete?" = "真的要刪除圖片？";
+"Cancel_Delete" = "取消刪除";
+"Do_Delete" = "確認刪除";
+"Delete_Finish" = "刪除成功！";
+"Delete_Error" = "刪除出現錯誤，請重試。";
+
+"Rename_Title" = "請輸入新的樂譜歌曲名稱";
+"Rename_Finish" = "重命名成功！";
+"Rename_Error" = "重命名出現錯誤，請重試。";

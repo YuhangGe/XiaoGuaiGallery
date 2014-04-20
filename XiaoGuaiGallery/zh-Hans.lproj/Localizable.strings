@@ -43,3 +43,12 @@
 "Prompt_Title"="请输入乐谱歌曲名称";
 "Photo_Name_Exist" = "名称已经存在，不允许重复！";
 "Import_Photo_Success" = "导入乐谱成功！";
+"Sure_Delete?" = "真的要删除图片？";
+"Cancel_Delete" = "取消删除";
+"Do_Delete" = "确认删除";
+"Delete_Finish" = "删除成功！";
+"Delete_Error" = "删除出现错误，请重试。";
+
+"Rename_Title" = "请输入新的乐谱歌曲名称";
+"Rename_Finish" = "重命名成功！";
+"Rename_Error" = "重命名出现错误，请重试。";

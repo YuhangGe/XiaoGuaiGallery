@@ -1,0 +1,9 @@
+
+/* Class = "IBUIButton"; normalTitle = "Show All"; ObjectID = "0CJ-Sb-6oO"; */
+"0CJ-Sb-6oO.normalTitle" = "顯示所有";
+
+/* Class = "IBUISearchBar"; placeholder = "Filter Photo"; ObjectID = "HHm-Ic-iB6"; */
+"HHm-Ic-iB6.placeholder" = "搜索樂譜";
+
+/* Class = "IBUIButton"; normalTitle = "Search"; ObjectID = "bKx-yd-WTa"; */
+"bKx-yd-WTa.normalTitle" = "搜索";
