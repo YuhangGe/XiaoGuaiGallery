@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1785C749190CB6590051127E /* CameraLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1785C746190CB6590051127E /* CameraLayout.m */; };
+		1785C74A190CB6590051127E /* CameraPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1785C748190CB6590051127E /* CameraPickerViewCell.m */; };
+		1785C75F190DF2C50051127E /* CameraPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1785C75E190DF2C50051127E /* CameraPickerView.m */; };
+		1785C763190F43650051127E /* CameraPickerCell_iPhone_portrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C762190F43650051127E /* CameraPickerCell_iPhone_portrait.xib */; };
+		1785C767190F43B10051127E /* CameraPickerCell_iPhone_landscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C766190F43B10051127E /* CameraPickerCell_iPhone_landscape.xib */; };
+		1785C768190F62E80051127E /* CameraPickerView_iPhone_portrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C76A190F62E80051127E /* CameraPickerView_iPhone_portrait.xib */; };
+		1785C76D190F63060051127E /* CameraPickerView_iPhone_landscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C76F190F63060051127E /* CameraPickerView_iPhone_landscape.xib */; };
+		1785C77A190F65170051127E /* CameraPickerCell_iPad_landscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C778190F65170051127E /* CameraPickerCell_iPad_landscape.xib */; };
+		1785C77B190F65170051127E /* CameraPickerCell_iPad_portrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C779190F65170051127E /* CameraPickerCell_iPad_portrait.xib */; };
+		1785C77C190F6A500051127E /* CameraPickerView_iPad_portrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C77E190F6A500051127E /* CameraPickerView_iPad_portrait.xib */; };
+		1785C781190F6A680051127E /* CameraPickerView_iPad_landscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1785C783190F6A680051127E /* CameraPickerView_iPad_landscape.xib */; };
 		1792631618F910F10000F9C7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792631518F910F10000F9C7 /* GalleryViewController.m */; };
 		1792633A18F93A5D0000F9C7 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792633918F93A5D0000F9C7 /* GalleryCell.m */; };
 		1792633E18FA5BCE0000F9C7 /* GalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792633D18FA5BCE0000F9C7 /* GalleryPhoto.m */; };
@@ -41,7 +52,10 @@
 		17A021311900E63D00FA5013 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0212F1900E63D00FA5013 /* SearchViewController.m */; };
 		17A021331900EBD100FA5013 /* SearchViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A021351900EBD100FA5013 /* SearchViewController_iPad.xib */; };
 		17CE72B219025B240038170A /* SearchViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE72B419025B240038170A /* SearchViewController_iPhone.xib */; };
-		17CE72BB190260060038170A /* AnimatedDismissTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */; };
+		17CE72D51903AAE00038170A /* CameraPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CE72D21903AAE00038170A /* CameraPickerViewController.m */; };
+		17CE72D71903AB050038170A /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17CE72D61903AB050038170A /* image.xcassets */; };
+		17CE72DA1903B0CC0038170A /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CE72D91903B0CC0038170A /* CameraImageHelper.m */; };
+		17CE72DD1903B9210038170A /* AnimatedDismissTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CE72DB1903B9210038170A /* AnimatedDismissTransitioning.m */; };
 		17D2035018F7DA1E004A0D5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2034F18F7DA1E004A0D5E /* Foundation.framework */; };
 		17D2035218F7DA1E004A0D5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */; };
 		17D2035418F7DA1E004A0D5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2035318F7DA1E004A0D5E /* UIKit.framework */; };
@@ -70,6 +84,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1785C745190CB6590051127E /* CameraLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraLayout.h; path = CameraPickerController/CameraLayout.h; sourceTree = "<group>"; };
+		1785C746190CB6590051127E /* CameraLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraLayout.m; path = CameraPickerController/CameraLayout.m; sourceTree = "<group>"; };
+		1785C747190CB6590051127E /* CameraPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPickerViewCell.h; path = CameraPickerController/CameraPickerViewCell.h; sourceTree = "<group>"; };
+		1785C748190CB6590051127E /* CameraPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPickerViewCell.m; path = CameraPickerController/CameraPickerViewCell.m; sourceTree = "<group>"; };
+		1785C75D190DF2C50051127E /* CameraPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPickerView.h; path = CameraPickerController/CameraPickerView.h; sourceTree = "<group>"; };
+		1785C75E190DF2C50051127E /* CameraPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPickerView.m; path = CameraPickerController/CameraPickerView.m; sourceTree = "<group>"; };
+		1785C762190F43650051127E /* CameraPickerCell_iPhone_portrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraPickerCell_iPhone_portrait.xib; path = CameraPickerController/CameraPickerCell_iPhone_portrait.xib; sourceTree = "<group>"; };
+		1785C766190F43B10051127E /* CameraPickerCell_iPhone_landscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraPickerCell_iPhone_landscape.xib; path = CameraPickerController/CameraPickerCell_iPhone_landscape.xib; sourceTree = "<group>"; };
+		1785C76E190F63060051127E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CameraPickerView_iPhone_landscape.xib; sourceTree = "<group>"; };
+		1785C771190F630B0051127E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CameraPickerView_iPhone_landscape.strings"; sourceTree = "<group>"; };
+		1785C778190F65170051127E /* CameraPickerCell_iPad_landscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraPickerCell_iPad_landscape.xib; path = CameraPickerController/CameraPickerCell_iPad_landscape.xib; sourceTree = "<group>"; };
+		1785C779190F65170051127E /* CameraPickerCell_iPad_portrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraPickerCell_iPad_portrait.xib; path = CameraPickerController/CameraPickerCell_iPad_portrait.xib; sourceTree = "<group>"; };
+		1785C77D190F6A500051127E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CameraPickerView_iPad_portrait.xib; sourceTree = "<group>"; };
+		1785C782190F6A680051127E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CameraPickerView_iPad_landscape.xib; sourceTree = "<group>"; };
+		1785C787190F6B640051127E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CameraPickerView_iPad_portrait.strings"; sourceTree = "<group>"; };
+		1785C78B190F6E450051127E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CameraPickerView_iPad_landscape.strings"; sourceTree = "<group>"; };
+		1785C78D190F741B0051127E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CameraPickerView_iPhone_portrait.xib; sourceTree = "<group>"; };
+		1785C78F190F74510051127E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CameraPickerView_iPhone_portrait.strings"; sourceTree = "<group>"; };
 		1792631418F910F10000F9C7 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		1792631518F910F10000F9C7 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		1792633818F93A5D0000F9C7 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
@@ -128,8 +160,6 @@
 		17A0213F1900EE5C00FA5013 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewController_iPad.strings"; sourceTree = "<group>"; };
 		17CE72B319025B240038170A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewController_iPhone.xib; sourceTree = "<group>"; };
 		17CE72B819025B9B0038170A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewController_iPhone.strings"; sourceTree = "<group>"; };
-		17CE72B9190260060038170A /* AnimatedDismissTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedDismissTransitioning.h; sourceTree = "<group>"; };
-		17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedDismissTransitioning.m; sourceTree = "<group>"; };
 		17CE72BC190382460038170A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		17CE72BE19038C700038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SearchViewController_iPad.strings"; sourceTree = "<group>"; };
 		17CE72BF19038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SearchViewController_iPhone.strings"; sourceTree = "<group>"; };
@@ -138,6 +168,13 @@
 		17CE72C219038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		17CE72C319038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		17CE72C419038C710038170A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		17CE72D21903AAE00038170A /* CameraPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPickerViewController.m; path = CameraPickerController/CameraPickerViewController.m; sourceTree = "<group>"; };
+		17CE72D31903AAE00038170A /* CameraPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPickerViewController.h; path = CameraPickerController/CameraPickerViewController.h; sourceTree = "<group>"; };
+		17CE72D61903AB050038170A /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = image.xcassets; path = CameraPickerController/image.xcassets; sourceTree = "<group>"; };
+		17CE72D81903B0CC0038170A /* CameraImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraImageHelper.h; path = CameraPickerController/CameraImageHelper.h; sourceTree = "<group>"; };
+		17CE72D91903B0CC0038170A /* CameraImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraImageHelper.m; path = CameraPickerController/CameraImageHelper.m; sourceTree = "<group>"; };
+		17CE72DB1903B9210038170A /* AnimatedDismissTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatedDismissTransitioning.m; path = CustomTransition/AnimatedDismissTransitioning.m; sourceTree = "<group>"; };
+		17CE72DC1903B9210038170A /* AnimatedDismissTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatedDismissTransitioning.h; path = CustomTransition/AnimatedDismissTransitioning.h; sourceTree = "<group>"; };
 		17D2034C18F7DA1E004A0D5E /* XiaoGuaiGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoGuaiGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D2034F18F7DA1E004A0D5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		17D2035118F7DA1E004A0D5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -234,12 +271,12 @@
 		1799986119024FDB0018BAB2 /* CustomTransition */ = {
 			isa = PBXGroup;
 			children = (
+				17CE72DB1903B9210038170A /* AnimatedDismissTransitioning.m */,
+				17CE72DC1903B9210038170A /* AnimatedDismissTransitioning.h */,
 				179998621902503A0018BAB2 /* AnimatedTransitioning.h */,
 				179998631902503A0018BAB2 /* AnimatedTransitioning.m */,
 				179998641902503A0018BAB2 /* TransitionDelegate.h */,
 				179998651902503A0018BAB2 /* TransitionDelegate.m */,
-				17CE72B9190260060038170A /* AnimatedDismissTransitioning.h */,
-				17CE72BA190260060038170A /* AnimatedDismissTransitioning.m */,
 			);
 			name = CustomTransition;
 			sourceTree = "<group>";
@@ -272,6 +309,32 @@
 			path = CTAssetsPickerController;
 			sourceTree = "<group>";
 		};
+		17CE72C51903A2C60038170A /* CameraPickerController */ = {
+			isa = PBXGroup;
+			children = (
+				1785C745190CB6590051127E /* CameraLayout.h */,
+				1785C746190CB6590051127E /* CameraLayout.m */,
+				1785C747190CB6590051127E /* CameraPickerViewCell.h */,
+				1785C748190CB6590051127E /* CameraPickerViewCell.m */,
+				17CE72D81903B0CC0038170A /* CameraImageHelper.h */,
+				17CE72D91903B0CC0038170A /* CameraImageHelper.m */,
+				17CE72D61903AB050038170A /* image.xcassets */,
+				1785C76A190F62E80051127E /* CameraPickerView_iPhone_portrait.xib */,
+				1785C76F190F63060051127E /* CameraPickerView_iPhone_landscape.xib */,
+				1785C77E190F6A500051127E /* CameraPickerView_iPad_portrait.xib */,
+				1785C783190F6A680051127E /* CameraPickerView_iPad_landscape.xib */,
+				1785C762190F43650051127E /* CameraPickerCell_iPhone_portrait.xib */,
+				1785C766190F43B10051127E /* CameraPickerCell_iPhone_landscape.xib */,
+				1785C778190F65170051127E /* CameraPickerCell_iPad_landscape.xib */,
+				1785C779190F65170051127E /* CameraPickerCell_iPad_portrait.xib */,
+				1785C75D190DF2C50051127E /* CameraPickerView.h */,
+				1785C75E190DF2C50051127E /* CameraPickerView.m */,
+				17CE72D21903AAE00038170A /* CameraPickerViewController.m */,
+				17CE72D31903AAE00038170A /* CameraPickerViewController.h */,
+			);
+			name = CameraPickerController;
+			sourceTree = "<group>";
+		};
 		17D2034318F7DA1E004A0D5E = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +342,7 @@
 				1799983C19021DCF0018BAB2 /* MBProcessHUD */,
 				17A020F218FCDA5D00FA5013 /* CTAssetsPickerController */,
 				1792631318F9001E0000F9C7 /* XiaoGuaiPicker */,
+				17CE72C51903A2C60038170A /* CameraPickerController */,
 				1799986119024FDB0018BAB2 /* CustomTransition */,
 				17D2035518F7DA1E004A0D5E /* XiaoGuaiGallery */,
 				17D2037718F7DA1E004A0D5E /* XiaoGuaiGalleryTests */,
@@ -412,7 +476,7 @@
 				ORGANIZATIONNAME = nju;
 				TargetAttributes = {
 					17D2034B18F7DA1E004A0D5E = {
-						DevelopmentTeam = S427BCY298;
+						DevelopmentTeam = G8AGZ8REBE;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 0;
@@ -459,17 +523,26 @@
 				17D2036B18F7DA1E004A0D5E /* Images.xcassets in Resources */,
 				179998511902207A0018BAB2 /* Default-568h@2x.png in Resources */,
 				179998531902207A0018BAB2 /* Default-iOS7@2x.png in Resources */,
+				1785C781190F6A680051127E /* CameraPickerView_iPad_landscape.xib in Resources */,
+				1785C767190F43B10051127E /* CameraPickerCell_iPhone_landscape.xib in Resources */,
+				1785C77C190F6A500051127E /* CameraPickerView_iPad_portrait.xib in Resources */,
 				17A021331900EBD100FA5013 /* SearchViewController_iPad.xib in Resources */,
+				1785C763190F43650051127E /* CameraPickerCell_iPhone_portrait.xib in Resources */,
 				1799984F1902207A0018BAB2 /* 37x-Checkmark.png in Resources */,
 				179998541902207A0018BAB2 /* Default.png in Resources */,
 				179998501902207A0018BAB2 /* 37x-Checkmark@2x.png in Resources */,
 				17D2036318F7DA1E004A0D5E /* Main_iPhone.storyboard in Resources */,
+				1785C77A190F65170051127E /* CameraPickerCell_iPad_landscape.xib in Resources */,
 				17A0211118FCDA5E00FA5013 /* Images.xcassets in Resources */,
 				1799985A1902207A0018BAB2 /* Icon@2x.png in Resources */,
+				1785C76D190F63060051127E /* CameraPickerView_iPhone_landscape.xib in Resources */,
 				17CE72B219025B240038170A /* SearchViewController_iPhone.xib in Resources */,
 				179998521902207A0018BAB2 /* Default-iOS7-568h@2x.png in Resources */,
 				179998551902207A0018BAB2 /* Default@2x.png in Resources */,
+				1785C77B190F65170051127E /* CameraPickerCell_iPad_portrait.xib in Resources */,
+				1785C768190F62E80051127E /* CameraPickerView_iPhone_portrait.xib in Resources */,
 				17D2035A18F7DA1E004A0D5E /* InfoPlist.strings in Resources */,
+				17CE72D71903AB050038170A /* image.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,8 +563,13 @@
 			files = (
 				17A0211218FCDA5E00FA5013 /* NSDate+timeDescription.m in Sources */,
 				17A0210E18FCDA5E00FA5013 /* CTAssetsSupplementaryView.m in Sources */,
+				17CE72DA1903B0CC0038170A /* CameraImageHelper.m in Sources */,
 				17A0210B18FCDA5E00FA5013 /* CTAssetsGroupViewController.m in Sources */,
 				17A0210F18FCDA5E00FA5013 /* CTAssetsViewCell.m in Sources */,
+				17CE72D51903AAE00038170A /* CameraPickerViewController.m in Sources */,
+				1785C75F190DF2C50051127E /* CameraPickerView.m in Sources */,
+				17CE72DD1903B9210038170A /* AnimatedDismissTransitioning.m in Sources */,
+				1785C74A190CB6590051127E /* CameraPickerViewCell.m in Sources */,
 				17A0210A18FCDA5D00FA5013 /* CTAssetsGroupViewCell.m in Sources */,
 				1792631618F910F10000F9C7 /* GalleryViewController.m in Sources */,
 				17A0210818FCDA5D00FA5013 /* ALAsset+isEqual.m in Sources */,
@@ -503,11 +581,11 @@
 				17A0211918FD0E7600FA5013 /* GalleryDetailController.m in Sources */,
 				17A020EB18FA7E8700FA5013 /* Layout.m in Sources */,
 				179998671902503A0018BAB2 /* TransitionDelegate.m in Sources */,
-				17CE72BB190260060038170A /* AnimatedDismissTransitioning.m in Sources */,
 				17A0210C18FCDA5E00FA5013 /* CTAssetsPickerConstants.m in Sources */,
 				17D2035C18F7DA1E004A0D5E /* main.m in Sources */,
 				17A0210D18FCDA5E00FA5013 /* CTAssetsPickerController.m in Sources */,
 				17A0210918FCDA5D00FA5013 /* ALAssetsGroup+isEqual.m in Sources */,
+				1785C749190CB6590051127E /* CameraLayout.m in Sources */,
 				1792633A18F93A5D0000F9C7 /* GalleryCell.m in Sources */,
 				17A0211018FCDA5E00FA5013 /* CTAssetsViewController.m in Sources */,
 			);
@@ -532,6 +610,46 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1785C76A190F62E80051127E /* CameraPickerView_iPhone_portrait.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1785C78D190F741B0051127E /* Base */,
+				1785C78F190F74510051127E /* zh-Hans */,
+			);
+			name = CameraPickerView_iPhone_portrait.xib;
+			path = CameraPickerController;
+			sourceTree = "<group>";
+		};
+		1785C76F190F63060051127E /* CameraPickerView_iPhone_landscape.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1785C76E190F63060051127E /* Base */,
+				1785C771190F630B0051127E /* zh-Hans */,
+			);
+			name = CameraPickerView_iPhone_landscape.xib;
+			path = CameraPickerController;
+			sourceTree = "<group>";
+		};
+		1785C77E190F6A500051127E /* CameraPickerView_iPad_portrait.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1785C77D190F6A500051127E /* Base */,
+				1785C787190F6B640051127E /* zh-Hans */,
+			);
+			name = CameraPickerView_iPad_portrait.xib;
+			path = CameraPickerController;
+			sourceTree = "<group>";
+		};
+		1785C783190F6A680051127E /* CameraPickerView_iPad_landscape.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1785C782190F6A680051127E /* Base */,
+				1785C78B190F6E450051127E /* zh-Hans */,
+			);
+			name = CameraPickerView_iPad_landscape.xib;
+			path = CameraPickerController;
+			sourceTree = "<group>";
+		};
 		17A021351900EBD100FA5013 /* SearchViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

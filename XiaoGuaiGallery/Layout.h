@@ -11,6 +11,12 @@ extern int const IPHONE_PORTRAIT;
 extern int const IPAD_LANDSCAPE;
 extern int const IPAD_PORTRAIT;
 
+
+#define IPHONE_LANDSCAPE 0
+#define IPHONE_PORTRAIT 1
+#define IPAD_LANDSCAPE  2
+#define IPAD_PORTRAIT 3
+
 extern int const LAYOUT_SIZE_WIDTH[];
 extern int const LAYOUT_SIZE_HEIGHT[];
 extern int const LAYOUT_EDGE_LEFT[];

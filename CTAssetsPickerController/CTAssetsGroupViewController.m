@@ -39,6 +39,7 @@
 
 - (void)dismiss:(id)sender;
 - (void)finishPickingAssets:(id)sender;
+- (void) cameraClick:(id) sender;
 
 - (NSString *)toolbarTitle;
 - (UIView *)notAllowedView;
@@ -119,20 +120,31 @@
 
 - (void)setupButtons
 {
-    if (self.picker.showsCancelButton)
-    {
-        self.navigationItem.leftBarButtonItem =
-        [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
-                                         style:UIBarButtonItemStylePlain
-                                        target:self.picker
-                                        action:@selector(dismiss:)];
+   
+    UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                    style:UIBarButtonItemStylePlain
+                                                   target:self.picker
+                                                   action:@selector(dismiss:)];
+    UIBarButtonItem* cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self.picker action:@selector(cameraClick:)];
+    
+    if (self.picker.showsCancelButton && self.picker.showCameraButton) {
+        NSArray* leftBarArray = @[cancelButton, cameraButton];
+        self.navigationItem.leftBarButtonItems = leftBarArray;
+        
+    } else if(self.picker.showsCancelButton) {
+        self.navigationItem.leftBarButtonItem = cancelButton;
+    } else if(self.picker.showCameraButton) {
+        self.navigationItem.leftBarButtonItem = cameraButton;
     }
+    
     
     self.navigationItem.rightBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
                                      style:UIBarButtonItemStyleDone
                                     target:self.picker
                                     action:@selector(finishPickingAssets:)];
+    
+    
     
     self.navigationItem.rightBarButtonItem.enabled = (self.picker.selectedAssets.count > 0);
 }

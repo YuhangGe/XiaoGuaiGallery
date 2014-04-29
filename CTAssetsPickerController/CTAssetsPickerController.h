@@ -72,6 +72,11 @@
 @property (nonatomic, assign) BOOL showEmptyGroup;
 
 /**
+ *
+ * 
+ */
+@property (nonatomic, assign) BOOL showCameraButton;
+/**
  *  @name Managing Selections
  */
 
@@ -121,6 +126,13 @@
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets;
 
 @optional
+
+/**
+ * Tells the delegate that user click the camera button.
+ *
+ * @param picker The controller object managing the assets picker interface.
+ */
+-(void)assetsPickerControllerCameraClick:(CTAssetsPickerController*) picker;
 
 /**
  *  Tells the delegate that the user cancelled the pick operation.
@@ -245,6 +257,5 @@
  *  The notification’s `object` is an `NSArray` object of selected assets
  */
 extern NSString * const CTAssetsPickerSelectedAssetsChangedNotification;
-
 
 @end

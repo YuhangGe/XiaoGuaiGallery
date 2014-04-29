@@ -9,10 +9,10 @@
 #import "Layout.h"
 
 
-int const IPHONE_LANDSCAPE = 0;
-int const IPHONE_PORTRAIT = 1;
-int const IPAD_LANDSCAPE = 2;
-int const IPAD_PORTRAIT = 3;
+//int const IPHONE_LANDSCAPE = 0;
+//int const IPHONE_PORTRAIT = 1;
+//int const IPAD_LANDSCAPE = 2;
+//int const IPAD_PORTRAIT = 3;
 
 int const LAYOUT_SIZE_WIDTH[] = {160, 90, 210, 160};
 int const LAYOUT_SIZE_HEIGHT[] = {220, 140, 290, 210};

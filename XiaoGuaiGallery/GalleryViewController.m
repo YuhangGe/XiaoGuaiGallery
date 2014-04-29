@@ -16,6 +16,8 @@
 #import "SearchViewController.h"
 #import "MBProgressHUD.h"
 #import "TransitionDelegate.h"
+#import "CameraPickerViewController.h"
+
 
 NSString * const GalleryCellIdentifier = @"GalleryCell";
 NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
@@ -27,7 +29,7 @@ NSInteger const RENAME_TAG = 1;
 <UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchViewControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property(nonatomic) NSString* docRootPath;
-@property (nonatomic, copy) NSMutableArray *assets;
+@property (nonatomic, copy) NSArray *assets;
 @property (nonatomic, strong) UIPopoverController *popover;
 @property (nonatomic, strong) SearchViewController* modalSearchView;
 
@@ -82,9 +84,13 @@ NSInteger const RENAME_TAG = 1;
     
     self.navigationItem.title = NSLocalizedString(@"App_Name", nil);
     [self reloadImages];
+    
+   
 }
 
-
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void) alert:(NSString*) message {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(message, nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
@@ -149,18 +155,17 @@ NSInteger const RENAME_TAG = 1;
     
 }
 
+
 -(void) onAddButtonClick:(id)sender {
-    if (!self.assets)
-        self.assets = [[NSMutableArray alloc] init];
-    else {
-        [self.assets removeAllObjects];
-    }
+    
+    self.assets = [[NSArray alloc] init];
     
     CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
     picker.assetsFilter         = [ALAssetsFilter allPhotos];
     picker.showsCancelButton    = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad);
     picker.delegate             = self;
     picker.selectedAssets       = [NSMutableArray arrayWithArray:self.assets];
+    picker.showCameraButton = YES;
     
     // iPad
     if (self.curLayoutType >= 2) {
@@ -208,6 +213,11 @@ NSInteger const RENAME_TAG = 1;
 }
 
 -(void)onSelectButtonClick:(id)sender {
+
+#if 1
+    [self showCameraView];
+    return;
+#endif
     UIBarButtonItem* editButton = sender;
     
     [self.selectPicArray removeAllObjects];
@@ -313,7 +323,7 @@ NSInteger const RENAME_TAG = 1;
     else
         [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     
-    self.assets = [NSMutableArray arrayWithArray:assets];
+    self.assets = [NSArray arrayWithArray:assets];
     
     UIAlertView* promptView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(@"Prompt_Title", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
     
@@ -322,6 +332,19 @@ NSInteger const RENAME_TAG = 1;
     [promptView setTag:IMPORT_TAG];
     
     [promptView show];
+}
+
+- (void)assetsPickerControllerCameraClick:(CTAssetsPickerController *)picker {
+    if(self.popover != nil) {
+        [self.popover dismissPopoverAnimated:NO];
+    }
+    /*
+     * 这里非常奇怪，如果不用performSelector:afterDelay来调用，则无法在showCameraView函数中加载camera view controller
+     * 可能的原因是，当前函数是从picker controller中的delegate调用过来的，就好像javascript里面经常需要setTimeout(0)来切换
+     * context从而解决一些诡异bug一样，这里也需要让context变成当前的controller.
+     */
+    [self performSelector:@selector(showCameraView) withObject:nil afterDelay:0];
+
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -751,7 +774,8 @@ NSInteger const RENAME_TAG = 1;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath {
     if(self.editing) {
-        [self.selectPicArray addObject:[NSNumber numberWithInt:indexPath.row]];
+        int idx = (int)indexPath.row;
+        [self.selectPicArray addObject:[NSNumber numberWithInt:idx]];
         [self afterCellSelected];
     } else {
         [self performSegueWithIdentifier:@"showDetailSegue" sender:self];
@@ -789,5 +813,18 @@ NSInteger const RENAME_TAG = 1;
 //{
 
 //}
+
+#pragma mark - camera
+
+- (void) showCameraView {
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CameraViewStoryboard_iPhone" bundle:nil];
+//    CameraPickerViewController* cv = [sb instantiateInitialViewController];
+    CameraPickerViewController* cv = [[CameraPickerViewController alloc] init];
+    cv.size = self.view.bounds.size;
+    
+    [self presentViewController:cv animated:YES completion:nil];
+//    [self alert:@"拍照功能将在下个版本中完成，敬请期待."];
+
+}
 
 @end

@@ -34,7 +34,6 @@
 NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPickerSelectedAssetsChangedNotification";
 
 
-
 @interface CTAssetsPickerController ()
 
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
@@ -58,7 +57,7 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
         _selectedAssets     = [[NSMutableArray alloc] init];
         _showsCancelButton  = YES;
         _showEmptyGroup = NO;
-        
+        _showCameraButton = NO;
         self.preferredContentSize = kPopoverContentSize;
         
         [self addKeyValueObserver];
@@ -141,8 +140,7 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
     [[NSNotificationCenter defaultCenter] postNotificationName:CTAssetsPickerSelectedAssetsChangedNotification
                                                         object:sender];
 }
-
-
+ 
 #pragma mark - Indexed Accessors
 
 - (NSUInteger)countOfSelectedAssets
@@ -399,6 +397,14 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)cameraClick:(id) sender {
+    if ([self.delegate respondsToSelector:@selector(assetsPickerControllerCameraClick:)])
+        [self.delegate assetsPickerControllerCameraClick:self];
+
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    
+
+}
 
 - (void)finishPickingAssets:(id)sender
 {
