@@ -24,9 +24,10 @@ NSString * const GallerySearchResuableView = @"GallerySearchResuableView";
 
 NSInteger const IMPORT_TAG = 0;
 NSInteger const RENAME_TAG = 1;
+NSInteger const CAMERA_TAG = 2;
 
 @interface GalleryViewController ()
-<UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchViewControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
+<UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, UIPopoverControllerDelegate,SearchViewControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate, CameraPickerViewDelegate>
 
 @property(nonatomic) NSString* docRootPath;
 @property (nonatomic, copy) NSArray *assets;
@@ -42,6 +43,8 @@ NSInteger const RENAME_TAG = 1;
 @property(nonatomic) NSArray* leftBarArray;
 
 @property (nonatomic, strong) TransitionDelegate *transitionController;
+
+@property(nonatomic) NSMutableArray* pickedImageArray;
 
 @end
 
@@ -213,11 +216,11 @@ NSInteger const RENAME_TAG = 1;
 }
 
 -(void)onSelectButtonClick:(id)sender {
-
-#if 1
-    [self showCameraView];
-    return;
-#endif
+//
+//#if 0
+//    [self showCameraView];
+//    return;
+//#endif
     UIBarButtonItem* editButton = sender;
     
     [self.selectPicArray removeAllObjects];
@@ -361,6 +364,9 @@ NSInteger const RENAME_TAG = 1;
             break;
         case RENAME_TAG:
             [self renameSelectPhotos:title];
+            break;
+        case CAMERA_TAG:
+            [self importPhotosFromCamera:title];
             break;
         default:
             break;
@@ -817,14 +823,170 @@ NSInteger const RENAME_TAG = 1;
 #pragma mark - camera
 
 - (void) showCameraView {
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CameraViewStoryboard_iPhone" bundle:nil];
-//    CameraPickerViewController* cv = [sb instantiateInitialViewController];
+
     CameraPickerViewController* cv = [[CameraPickerViewController alloc] init];
     cv.size = self.view.bounds.size;
+    cv.delegate = self;
     
     [self presentViewController:cv animated:YES completion:nil];
-//    [self alert:@"拍照功能将在下个版本中完成，敬请期待."];
 
+}
+
+- (void) cameraPickerViewController:(CameraPickerViewController *)picker didFinishPickImages:(NSArray *)pickedImages {
+    if([pickedImages count]==0) {
+        return;
+    }
+    if(!self.pickedImageArray) {
+        self.pickedImageArray = [[NSMutableArray alloc] init];
+    }
+    [self.pickedImageArray addObjectsFromArray:pickedImages];
+    UIAlertView* promptView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"App_Name", nil) message:NSLocalizedString(@"Prompt_Title", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
+    
+    
+    promptView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [promptView setTag:CAMERA_TAG];
+    
+    [promptView show];
+}
+
+-(void) importPhotosFromCamera:(NSString*) title {
+    for(GalleryPhoto* p in self.picArray) {
+        if([p.title hasPrefix:title]) {
+            [self alert:@"Photo_Name_Exist"];
+            return;
+        }
+    }
+    
+    int cur = 0;
+    for (UIImage* img in self.pickedImageArray) {
+        UIImage* s_img = [self scaleAndRotateImage:img];
+        NSData* data = UIImagePNGRepresentation(s_img);
+        NSString* save_file = [self.docRootPath stringByAppendingFormat:@"%@(%d).png", title, cur+1];
+        
+        if(![data writeToFile:save_file atomically:TRUE]) {
+            [self alert:@"Import_Photo_Error"];
+            return;
+        }
+        cur++;
+    }
+    [self alertComplete:@"Import_Photo_Success"];
+    
+    //reload Images
+    [self reloadImages];
+    [self.collectionView reloadData];
+    [self.pickedImageArray removeAllObjects];
+    
+}
+
+- (UIImage *)scaleAndRotateImage:(UIImage *)image {
+    
+    CGSize s = self.view.bounds.size;
+    
+    int kMaxResolution = MAX(1024, MAX(s.width, s.height)); // Or whatever
+    
+    CGImageRef imgRef = image.CGImage;
+    
+    CGFloat width = CGImageGetWidth(imgRef);
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    if (width > kMaxResolution || height > kMaxResolution) {
+        CGFloat ratio = width/height;
+        if (ratio > 1) {
+            bounds.size.width = kMaxResolution;
+            bounds.size.height = roundf(bounds.size.width / ratio);
+        }
+        else {
+            bounds.size.height = kMaxResolution;
+            bounds.size.width = roundf(bounds.size.height * ratio);
+        }
+    }
+    
+    CGFloat scaleRatio = bounds.size.width / width;
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
+    CGFloat boundHeight;
+    UIImageOrientation orient = image.imageOrientation;
+    switch(orient) {
+            
+        case UIImageOrientationUp: //EXIF = 1
+            transform = CGAffineTransformIdentity;
+            break;
+            
+        case UIImageOrientationUpMirrored: //EXIF = 2
+            transform = CGAffineTransformMakeTranslation(imageSize.width, 0.0);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            break;
+            
+        case UIImageOrientationDown: //EXIF = 3
+            transform = CGAffineTransformMakeTranslation(imageSize.width, imageSize.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationDownMirrored: //EXIF = 4
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.height);
+            transform = CGAffineTransformScale(transform, 1.0, -1.0);
+            break;
+            
+        case UIImageOrientationLeftMirrored: //EXIF = 5
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, imageSize.width);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationLeft: //EXIF = 6
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationRightMirrored: //EXIF = 7
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationRight: //EXIF = 8
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+            
+        default:
+            [NSException raise:NSInternalInconsistencyException format:@"Invalid image orientation"];
+            
+    }
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (orient == UIImageOrientationRight || orient == UIImageOrientationLeft) {
+        CGContextScaleCTM(context, -scaleRatio, scaleRatio);
+        CGContextTranslateCTM(context, -height, 0);
+    }
+    else {
+        CGContextScaleCTM(context, scaleRatio, -scaleRatio);
+        CGContextTranslateCTM(context, 0, -height);
+    }
+    
+    CGContextConcatCTM(context, transform);
+    
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageCopy;
 }
 
 @end

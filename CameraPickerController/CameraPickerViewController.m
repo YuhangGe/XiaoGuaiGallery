@@ -247,8 +247,9 @@ NSString* const CameraPickerCellIdentifier_iPad_landscape = @"CameraPickerCell_i
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)finishPick:(id)sender {
+    [self.delegate cameraPickerViewController:self didFinishPickImages:self.pickedImageArray];
     
-    
+    [self.pickedImageArray removeAllObjects];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -276,7 +277,6 @@ NSString* const CameraPickerCellIdentifier_iPad_landscape = @"CameraPickerCell_i
     if(pre==0) {
         [self resetLayout:self.curLayoutType];
         [self.view layoutIfNeeded];
-
     }
 }
 

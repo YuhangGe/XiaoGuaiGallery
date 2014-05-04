@@ -8,14 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CameraPickerViewDelegate;
+
 @interface CameraPickerViewController : UIViewController
 
 @property CGSize size;
+@property(nonatomic) id<CameraPickerViewDelegate> delegate;
 
 - (void) deletePickedImage:(UIImage*)image;
 
 - (IBAction)pickImage:(id)sender;
 - (IBAction)cancelPick:(id)sender;
 - (IBAction)finishPick:(id)sender;
+
+@end
+
+@protocol CameraPickerViewDelegate <NSObject>
+
+- (void) cameraPickerViewController:(CameraPickerViewController*) picker didFinishPickImages:(NSArray*) pickedImages;
 
 @end
